@@ -16,6 +16,10 @@
 		60B9A78E1A3C8D0400373394 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60B9A78D1A3C8D0400373394 /* Images.xcassets */; };
 		60B9A7911A3C8D0400373394 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60B9A78F1A3C8D0400373394 /* LaunchScreen.xib */; };
 		60B9A79D1A3C8D0500373394 /* SimpleGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A79C1A3C8D0500373394 /* SimpleGameTests.m */; };
+		60B9A7A71A3CA21500373394 /* ShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7A61A3CA21500373394 /* ShipController.m */; };
+		60B9A7AB1A3D4CFA00373394 /* BallController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7AA1A3D4CFA00373394 /* BallController.m */; };
+		60B9A7B31A3D570900373394 /* BluePlanet.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B9A7B11A3D570900373394 /* BluePlanet.png */; };
+		60B9A7B41A3D570900373394 /* RedPlanet.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B9A7B21A3D570900373394 /* RedPlanet.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,12 @@
 		60B9A7961A3C8D0500373394 /* SimpleGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60B9A79B1A3C8D0500373394 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60B9A79C1A3C8D0500373394 /* SimpleGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleGameTests.m; sourceTree = "<group>"; };
+		60B9A7A61A3CA21500373394 /* ShipController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipController.m; sourceTree = "<group>"; };
+		60B9A7A91A3CA24000373394 /* ShipController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShipController.h; sourceTree = "<group>"; };
+		60B9A7AA1A3D4CFA00373394 /* BallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallController.m; sourceTree = "<group>"; };
+		60B9A7AC1A3D4D1900373394 /* BallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallController.h; sourceTree = "<group>"; };
+		60B9A7B11A3D570900373394 /* BluePlanet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BluePlanet.png; sourceTree = "<group>"; };
+		60B9A7B21A3D570900373394 /* RedPlanet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedPlanet.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,16 +96,22 @@
 		60B9A77A1A3C8D0400373394 /* SimpleGame */ = {
 			isa = PBXGroup;
 			children = (
+				60B9A7A91A3CA24000373394 /* ShipController.h */,
+				60B9A7A61A3CA21500373394 /* ShipController.m */,
+				60B9A7AC1A3D4D1900373394 /* BallController.h */,
+				60B9A7AA1A3D4CFA00373394 /* BallController.m */,
 				60B9A77F1A3C8D0400373394 /* AppDelegate.h */,
 				60B9A7801A3C8D0400373394 /* AppDelegate.m */,
 				60B9A7821A3C8D0400373394 /* GameScene.h */,
 				60B9A7831A3C8D0400373394 /* GameScene.m */,
-				60B9A7851A3C8D0400373394 /* GameScene.sks */,
+				60B9A7B11A3D570900373394 /* BluePlanet.png */,
+				60B9A7B21A3D570900373394 /* RedPlanet.png */,
 				60B9A7871A3C8D0400373394 /* GameViewController.h */,
 				60B9A7881A3C8D0400373394 /* GameViewController.m */,
 				60B9A78A1A3C8D0400373394 /* Main.storyboard */,
-				60B9A78D1A3C8D0400373394 /* Images.xcassets */,
 				60B9A78F1A3C8D0400373394 /* LaunchScreen.xib */,
+				60B9A7851A3C8D0400373394 /* GameScene.sks */,
+				60B9A78D1A3C8D0400373394 /* Images.xcassets */,
 				60B9A77B1A3C8D0400373394 /* Supporting Files */,
 			);
 			path = SimpleGame;
@@ -207,10 +223,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60B9A7B31A3D570900373394 /* BluePlanet.png in Resources */,
 				60B9A7911A3C8D0400373394 /* LaunchScreen.xib in Resources */,
 				60B9A78E1A3C8D0400373394 /* Images.xcassets in Resources */,
 				60B9A7861A3C8D0400373394 /* GameScene.sks in Resources */,
 				60B9A78C1A3C8D0400373394 /* Main.storyboard in Resources */,
+				60B9A7B41A3D570900373394 /* RedPlanet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +246,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60B9A7AB1A3D4CFA00373394 /* BallController.m in Sources */,
+				60B9A7A71A3CA21500373394 /* ShipController.m in Sources */,
 				60B9A7891A3C8D0400373394 /* GameViewController.m in Sources */,
 				60B9A7811A3C8D0400373394 /* AppDelegate.m in Sources */,
 				60B9A7841A3C8D0400373394 /* GameScene.m in Sources */,
