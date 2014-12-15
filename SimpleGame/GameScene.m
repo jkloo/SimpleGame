@@ -13,6 +13,7 @@
 
 @property double GRAV_CONST;
 @property NSTimeInterval touch_begin;
+@property BallController* placing_ball;
 
 @end
 
@@ -23,7 +24,7 @@
 -(void)didMoveToView:(SKView *)view
 {
     /* Setup your scene here */
-    self.GRAV_CONST = 6.674 * pow(10, -11) * pow(10, 14);
+    self.GRAV_CONST = 6.674 * pow(10, -11) * pow(10, 13);
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
     for(int i=0; i<10; i++)
     {
@@ -36,28 +37,6 @@
     }
 }
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-    for(UITouch* touch in touches)
-    {
-        NSTimeInterval touch_end = touch.timestamp;
-        NSTimeInterval duration = 30 * (touch_end - self.touch_begin);
-        NSLog(@"%f", duration);
-        CGPoint location = [touch locationInNode:self];
-        
-        BallController* ball = [[BallController alloc] initWithMass:duration AndRadius:duration];
-        ball.physicsBody.collisionBitMask = 0x00000000;
-        [ball.physicsBody setCategoryBitMask:0x00000000];
-        ball.stationary = YES;
-        ball.position = location;
-        [self addChild:ball];
-        break;
-    }
-
-
-}
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     /* Called when a touch begins */
@@ -65,12 +44,56 @@
     for (UITouch *touch in touches)
     {
         self.touch_begin = touch.timestamp;
+        self.placing_ball = [[BallController alloc] initWithMass:0 AndRadius:0];
+        self.placing_ball.position = [touch locationInNode:self];
+        [self addChild:self.placing_ball];
         break;
     }
 }
 
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    for(UITouch* touch in touches)
+    {
+        NSTimeInterval touch_end = touch.timestamp;
+        double radius = [self durationToRadius:(touch_end - self.touch_begin)];
+        double mass = [self durationToMass:(touch_end - self.touch_begin)];
+
+        CGPoint location = [touch locationInNode:self];
+        
+        [self.placing_ball updateSize:radius];
+        [self.placing_ball setupPhysicsBodyWithMass:mass AndRadius:radius];
+        self.placing_ball.position = location;
+        break;
+    }
+    self.placing_ball = nil;
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for(UITouch* touch in touches)
+    {
+        self.placing_ball.position = [touch locationInNode:self];
+    }
+
+}
+
 -(void)update:(CFTimeInterval)currentTime
 {
+    if(self.placing_ball)
+    {
+        NSTimeInterval now = [[NSProcessInfo processInfo] systemUptime];
+        NSLog(@"Now: %f", now);
+        NSLog(@"Begin: %f", self.touch_begin);
+        NSLog(@"Duration: %f", (now - self.touch_begin));
+        double radius = [self durationToRadius:(now - self.touch_begin)];
+        double mass = [self durationToMass:(now - self.touch_begin)];
+        [self.placing_ball updateSize:radius];
+        [self.placing_ball setupPhysicsBodyWithMass:mass AndRadius:radius];
+    }
+    
     for (BallController* ball_1 in self.children)
     {
         for(BallController* ball_2 in self.children)
@@ -95,6 +118,16 @@
 {
     double rad_square = pow(ball_1.position.x - ball_2.position.x, 2) + pow(ball_1.position.y - ball_2.position.y, 2);
     return self.GRAV_CONST * ball_1.physicsBody.mass * ball_2.physicsBody.mass / rad_square;
+}
+
+-(double)durationToRadius:(NSTimeInterval)duration
+{
+    return (double)(30 * duration);
+}
+
+-(double)durationToMass:(NSTimeInterval)duration
+{
+    return (double)(30 * duration);
 }
 
 @end

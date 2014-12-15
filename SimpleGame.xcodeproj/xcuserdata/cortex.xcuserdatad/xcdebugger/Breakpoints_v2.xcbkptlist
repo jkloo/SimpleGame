@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SimpleGame/GameScene.m"
-            timestampString = "440294635.847513"
+            timestampString = "440314242.544556"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-update:"
             landmarkType = "5">
          </BreakpointContent>

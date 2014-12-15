@@ -10,8 +10,6 @@
 
 @interface BallController()
 
-@property float radius;
-
 -(double)constrainMass:(double)mass;
 -(double)constrainRadius:(double)radius;
 -(double)constrainValue:(double)value Between:(double)min And:(double)max;
@@ -34,17 +32,13 @@
         self.stationary = NO;
         self.min_mass = 5;
         self.max_mass = 100;
-        self.min_radius = 3;
+        self.min_radius = 5;
         self.max_radius = 50;
         
-        self.radius = [self constrainRadius:radius];
-        self.size = CGSizeMake(self.radius * 2, self.radius * 2);
+        [self updateSize:[self constrainRadius:radius]];
+        [self setupPhysicsBodyWithMass:mass AndRadius:radius];
         
-        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.radius];
-        self.physicsBody.dynamic = YES;
-        self.physicsBody.affectedByGravity = NO;
-        self.physicsBody.allowsRotation = NO;
-        self.physicsBody.mass = [self constrainMass:mass];
+
     }
     return self;
 }
@@ -78,5 +72,20 @@
         value = max;
     }
     return value;
+}
+
+-(void)updateSize:(float)radius
+{
+    self.radius = [self constrainRadius:radius];
+    self.size = CGSizeMake(self.radius * 2, self.radius * 2);
+}
+
+-(void)setupPhysicsBodyWithMass:(float)mass AndRadius:(float)radius
+{
+    self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:[self constrainRadius:radius]];
+    self.physicsBody.dynamic = YES;
+    self.physicsBody.affectedByGravity = NO;
+    self.physicsBody.allowsRotation = NO;
+    self.physicsBody.mass = [self constrainMass:mass];
 }
 @end
