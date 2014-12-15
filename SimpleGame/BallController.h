@@ -14,7 +14,15 @@
 
 @interface BallController : SKSpriteNode
 
+@property double min_mass;
+@property double max_mass;
+@property double min_radius;
+@property double max_radius;
+@property bool stationary;
+
 -(id)init;
+-(id)initWithMass:(float)mass AndRadius:(float)radius;
+-(id)initWithRandomMassBetween:(int)mass_min And:(int)mass_max AndRadius:(int)rad_min And:(int)rad_max;
 
 @end
 

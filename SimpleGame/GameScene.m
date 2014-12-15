@@ -12,6 +12,7 @@
 @interface GameScene ()
 
 @property double GRAV_CONST;
+@property NSTimeInterval touch_begin;
 
 @end
 
@@ -23,7 +24,38 @@
 {
     /* Setup your scene here */
     self.GRAV_CONST = 6.674 * pow(10, -11) * pow(10, 14);
-//    self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+    for(int i=0; i<10; i++)
+    {
+        int x = arc4random() % (int)([[UIScreen mainScreen] bounds].size.width + 1);
+        int y = arc4random() % (int)([[UIScreen mainScreen] bounds].size.height + 1);
+        double n = arc4random() % (50 - 10) + 10;
+        BallController* ball = [[BallController alloc] initWithMass:n AndRadius:n];
+        ball.position = CGPointMake(x, y);
+        [self addChild:ball];
+    }
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    for(UITouch* touch in touches)
+    {
+        NSTimeInterval touch_end = touch.timestamp;
+        NSTimeInterval duration = 30 * (touch_end - self.touch_begin);
+        NSLog(@"%f", duration);
+        CGPoint location = [touch locationInNode:self];
+        
+        BallController* ball = [[BallController alloc] initWithMass:duration AndRadius:duration];
+        ball.physicsBody.collisionBitMask = 0x00000000;
+        [ball.physicsBody setCategoryBitMask:0x00000000];
+        ball.stationary = YES;
+        ball.position = location;
+        [self addChild:ball];
+        break;
+    }
+
+
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -32,10 +64,8 @@
     
     for (UITouch *touch in touches)
     {
-        CGPoint location = [touch locationInNode:self];
-        BallController* ball = [[BallController alloc] init];
-        ball.position = location;
-        [self addChild:ball];
+        self.touch_begin = touch.timestamp;
+        break;
     }
 }
 
@@ -53,8 +83,10 @@
             double hypo = sqrt(pow(delta_x, 2) + pow(delta_y, 2));
             double force_mag = [self CalculateGravityForceBetweenBall1:ball_1 AndBall2:ball_2];
             CGVector force = CGVectorMake(force_mag * delta_x/hypo, force_mag * delta_y/hypo);
-            
-            [ball_1.physicsBody applyForce:force];
+            if(!ball_1.stationary)
+            {
+                [ball_1.physicsBody applyForce:force];
+            }
         }
     }
 }
