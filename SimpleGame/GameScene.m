@@ -8,12 +8,14 @@
 
 #import "GameScene.h"
 #import "BallController.h"
+#import "Spawner.h"
 
 @interface GameScene ()
 
 @property double GRAV_CONST;
 @property NSTimeInterval touch_begin;
 @property BallController* placing_ball;
+@property Spawner* spawner1;
 
 @end
 
@@ -26,11 +28,16 @@
     /* Setup your scene here */
     self.GRAV_CONST = 6.674 * pow(10, -11) * pow(10, 13);
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+    self.spawner1 = [[Spawner alloc] initWithLocation:CGPointMake(10, 500) Vector:CGVectorMake(1, 0) AndForce:10000];
+    BallController* ball = [self.spawner1 spawnObject];
+    [self addChild:ball];
+    [self.spawner1 fireObject:ball];
+    
     for(int i=0; i<10; i++)
     {
         int x = arc4random() % (int)([[UIScreen mainScreen] bounds].size.width + 1);
         int y = arc4random() % (int)([[UIScreen mainScreen] bounds].size.height + 1);
-        double n = arc4random() % (50 - 10) + 10;
+        double n = arc4random() % (20 - 5) + 5;
         BallController* ball = [[BallController alloc] initWithMass:n AndRadius:n];
         ball.position = CGPointMake(x, y);
         [self addChild:ball];
