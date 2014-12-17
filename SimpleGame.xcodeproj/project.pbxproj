@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		603D63371A40F3F5002D984E /* BlueShip.svg in Resources */ = {isa = PBXBuildFile; fileRef = 603D63361A40F3F5002D984E /* BlueShip.svg */; };
-		603D63391A40F640002D984E /* BlueShip.png in Resources */ = {isa = PBXBuildFile; fileRef = 603D63381A40F640002D984E /* BlueShip.png */; };
+		604969F91A414239009D7B33 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60B9A77C1A3C8D0400373394 /* Info.plist */; };
 		609092EE1A3F9C0B002954D4 /* Spawner.m in Sources */ = {isa = PBXBuildFile; fileRef = 609092ED1A3F9C0B002954D4 /* Spawner.m */; };
 		60B9A77E1A3C8D0400373394 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A77D1A3C8D0400373394 /* main.m */; };
 		60B9A7811A3C8D0400373394 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7801A3C8D0400373394 /* AppDelegate.m */; };
@@ -21,8 +20,6 @@
 		60B9A79D1A3C8D0500373394 /* SimpleGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A79C1A3C8D0500373394 /* SimpleGameTests.m */; };
 		60B9A7A71A3CA21500373394 /* ShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7A61A3CA21500373394 /* ShipController.m */; };
 		60B9A7AB1A3D4CFA00373394 /* BallController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7AA1A3D4CFA00373394 /* BallController.m */; };
-		60B9A7B31A3D570900373394 /* BluePlanet.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B9A7B11A3D570900373394 /* BluePlanet.png */; };
-		60B9A7B41A3D570900373394 /* RedPlanet.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B9A7B21A3D570900373394 /* RedPlanet.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +33,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		603D63361A40F3F5002D984E /* BlueShip.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BlueShip.svg; sourceTree = "<group>"; };
-		603D63381A40F640002D984E /* BlueShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlueShip.png; sourceTree = "<group>"; };
 		609092ED1A3F9C0B002954D4 /* Spawner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spawner.m; sourceTree = "<group>"; };
 		609092EF1A3F9C29002954D4 /* Spawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spawner.h; sourceTree = "<group>"; };
 		60B9A7781A3C8D0400373394 /* SimpleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,8 +55,6 @@
 		60B9A7A91A3CA24000373394 /* ShipController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShipController.h; sourceTree = "<group>"; };
 		60B9A7AA1A3D4CFA00373394 /* BallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallController.m; sourceTree = "<group>"; };
 		60B9A7AC1A3D4D1900373394 /* BallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallController.h; sourceTree = "<group>"; };
-		60B9A7B11A3D570900373394 /* BluePlanet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BluePlanet.png; sourceTree = "<group>"; };
-		60B9A7B21A3D570900373394 /* RedPlanet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedPlanet.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,16 +100,12 @@
 				60B9A7A61A3CA21500373394 /* ShipController.m */,
 				60B9A7AC1A3D4D1900373394 /* BallController.h */,
 				60B9A7AA1A3D4CFA00373394 /* BallController.m */,
-				603D63381A40F640002D984E /* BlueShip.png */,
 				609092ED1A3F9C0B002954D4 /* Spawner.m */,
 				609092EF1A3F9C29002954D4 /* Spawner.h */,
 				60B9A77F1A3C8D0400373394 /* AppDelegate.h */,
 				60B9A7801A3C8D0400373394 /* AppDelegate.m */,
 				60B9A7821A3C8D0400373394 /* GameScene.h */,
 				60B9A7831A3C8D0400373394 /* GameScene.m */,
-				60B9A7B11A3D570900373394 /* BluePlanet.png */,
-				60B9A7B21A3D570900373394 /* RedPlanet.png */,
-				603D63361A40F3F5002D984E /* BlueShip.svg */,
 				60B9A7871A3C8D0400373394 /* GameViewController.h */,
 				60B9A7881A3C8D0400373394 /* GameViewController.m */,
 				60B9A78A1A3C8D0400373394 /* Main.storyboard */,
@@ -235,14 +224,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60B9A7B31A3D570900373394 /* BluePlanet.png in Resources */,
 				60B9A7911A3C8D0400373394 /* LaunchScreen.xib in Resources */,
+				604969F91A414239009D7B33 /* Info.plist in Resources */,
 				60B9A78E1A3C8D0400373394 /* Images.xcassets in Resources */,
-				603D63391A40F640002D984E /* BlueShip.png in Resources */,
-				603D63371A40F3F5002D984E /* BlueShip.svg in Resources */,
 				60B9A7861A3C8D0400373394 /* GameScene.sks in Resources */,
 				60B9A78C1A3C8D0400373394 /* Main.storyboard in Resources */,
-				60B9A7B41A3D570900373394 /* RedPlanet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,8 +375,7 @@
 		60B9A7A11A3C8D0500373394 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SimpleGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -402,8 +387,7 @@
 		60B9A7A21A3C8D0500373394 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SimpleGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

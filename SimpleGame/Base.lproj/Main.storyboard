@@ -1,13 +1,98 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="UiF-lC-WWL">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="Spn-wp-USg">
+            <objects>
+                <viewController id="UiF-lC-WWL" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dPM-2z-Iwx"/>
+                        <viewControllerLayoutGuide type="bottom" id="97N-G9-zWt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="unH-ox-Gaq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueShip" translatesAutoresizingMaskIntoConstraints="NO" id="NNL-Hf-gBO">
+                                <rect key="frame" x="361" y="173" width="185" height="100"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BluePortal" translatesAutoresizingMaskIntoConstraints="NO" id="MDB-aG-o2R">
+                                <rect key="frame" x="484" y="158" width="99" height="131"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BluePortal" translatesAutoresizingMaskIntoConstraints="NO" id="bln-9S-gxH">
+                                <rect key="frame" x="30" y="157" width="99" height="131"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSB-38-S90">
+                                <rect key="frame" x="60" y="190" width="371" height="66"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Simple Game">
+                                        <attributes>
+                                            <color key="NSColor" red="0.22398296350347602" green="0.4713136737122352" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="56" name="Menlo-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="unE-Po-AkR">
+                                <rect key="frame" x="245" y="273" width="110" height="54"/>
+                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" label="">
+                                    <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="36"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.52807370580808088" green="0.52807370580808088" blue="0.52807370580808088" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="ac9-Kf-aGH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="unE-Po-AkR" firstAttribute="top" secondItem="LSB-38-S90" secondAttribute="bottom" constant="17" id="3Ge-dc-Qjb"/>
+                            <constraint firstItem="LSB-38-S90" firstAttribute="top" secondItem="dPM-2z-Iwx" secondAttribute="bottom" constant="170" id="FSe-9H-J5l"/>
+                            <constraint firstItem="LSB-38-S90" firstAttribute="centerY" secondItem="NNL-Hf-gBO" secondAttribute="centerY" id="GUY-DB-zoW"/>
+                            <constraint firstItem="MDB-aG-o2R" firstAttribute="leading" secondItem="LSB-38-S90" secondAttribute="trailing" constant="53" id="N6m-yY-woc"/>
+                            <constraint firstItem="bln-9S-gxH" firstAttribute="leading" secondItem="unH-ox-Gaq" secondAttribute="leading" id="NF3-7d-LX7"/>
+                            <constraint firstItem="bln-9S-gxH" firstAttribute="top" secondItem="dPM-2z-Iwx" secondAttribute="bottom" constant="139" id="TPO-Pd-Fvz"/>
+                            <constraint firstItem="LSB-38-S90" firstAttribute="leading" secondItem="bln-9S-gxH" secondAttribute="trailing" constant="-69" id="VFk-gK-qSN"/>
+                            <constraint firstAttribute="centerX" secondItem="LSB-38-S90" secondAttribute="centerX" constant="54.5" id="X1Y-94-CUx"/>
+                            <constraint firstItem="NNL-Hf-gBO" firstAttribute="centerY" secondItem="MDB-aG-o2R" secondAttribute="centerY" id="bk7-yt-9sb"/>
+                            <constraint firstItem="LSB-38-S90" firstAttribute="centerY" secondItem="bln-9S-gxH" secondAttribute="centerY" id="f26-KF-Sqt"/>
+                            <constraint firstItem="MDB-aG-o2R" firstAttribute="leading" secondItem="NNL-Hf-gBO" secondAttribute="trailing" constant="-62" id="fOj-qV-jii"/>
+                            <constraint firstItem="NNL-Hf-gBO" firstAttribute="top" secondItem="dPM-2z-Iwx" secondAttribute="bottom" constant="139" id="fbb-lp-3li"/>
+                            <constraint firstItem="LSB-38-S90" firstAttribute="leading" secondItem="unH-ox-Gaq" secondAttribute="leadingMargin" constant="44" id="heS-Am-Cpn"/>
+                            <constraint firstItem="MDB-aG-o2R" firstAttribute="top" secondItem="dPM-2z-Iwx" secondAttribute="bottom" constant="139" id="pPL-c5-y7b"/>
+                            <constraint firstAttribute="centerX" secondItem="unE-Po-AkR" secondAttribute="centerX" id="zIr-Lg-tlH"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="NF3-7d-LX7"/>
+                                <exclude reference="TPO-Pd-Fvz"/>
+                                <exclude reference="heS-Am-Cpn"/>
+                                <exclude reference="fbb-lp-3li"/>
+                                <exclude reference="pPL-c5-y7b"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pa5-vp-WHS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-367" y="136"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="maK-i9-Uhn"/>
                         <viewControllerLayoutGuide type="bottom" id="khH-OB-KpY"/>
@@ -20,6 +105,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="371" y="136"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="BluePortal" width="99" height="131"/>
+        <image name="BlueShip" width="185" height="100"/>
+    </resources>
 </document>
