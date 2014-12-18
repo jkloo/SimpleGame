@@ -8,40 +8,46 @@
 
 #import <Foundation/Foundation.h>
 #import "Spawner.h"
-#import "BallController.h"
+#import "BlackHole.h"
 
 @interface Spawner()
 
 @end
 
-@implementation Spawner
+@implementation Spawner : SKSpriteNode
 
--(id)initWithLocation:(CGPoint)location Vector:(CGVector)vector AndForce:(float)force
+-(id)initWithLocation:(CGPoint)location Vector:(CGVector)vector AndVelocity:(float)velocity
 {
-    self = [super init];
+    self = [super initWithImageNamed:@"BluePortal"];
     if(self)
     {
-        self.location = location;
+        self.position = location;
         self.vector = vector;
-        self.force = force;
+        self.velocity = velocity;
     }
     return self;
 }
 
--(BallController*)spawnObject
+-(BlackHole*)spawnObject
 {
-    BallController* ball = [[BallController alloc] initWithMass:25 AndRadius:25];
-    ball.position = self.location;
-    return ball;
+    BlackHole* hole = [[BlackHole alloc] initWithMass:25 AndRadius:25];
+    hole.position = self.position;
+    [[self parent] addChild:hole];
+    return hole;
 }
 
--(void)fireObject:(BallController*)ball
+-(void)fireObject:(BlackHole*)hole
 {
-    if(ball.physicsBody)
+    if(hole.physicsBody)
     {
-        CGVector force_vector = CGVectorMake(self.force * self.vector.dx, self.force * self.vector.dy);
-        [ball.physicsBody applyForce:force_vector];
+        CGVector velocity_vector = CGVectorMake(self.velocity * self.vector.dx, self.velocity * self.vector.dy);
+        hole.physicsBody.velocity = velocity_vector;
     }
+}
+
+-(void)spawnAndFireObject
+{
+    [self fireObject:[self spawnObject]];
 }
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Jeff Kloosterman. All rights reserved.
 //
 
-#import "BallController.h"
+#import "BlackHole.h"
 
-@interface BallController()
+@interface BlackHole()
 
 -(double)constrainMass:(double)mass;
 -(double)constrainRadius:(double)radius;
@@ -16,11 +16,11 @@
 
 @end
 
-@implementation BallController : SKSpriteNode
+@implementation BlackHole : SKSpriteNode
 
 -(id)init
 {
-    self = [[BallController alloc] initWithMass:10 AndRadius:10];
+    self = [[BlackHole alloc] initWithMass:10 AndRadius:10];
     return self;
 }
 
@@ -40,14 +40,6 @@
         
 
     }
-    return self;
-}
-
--(id)initWithRandomMassBetween:(int)mass_min And:(int)mass_max AndRadius:(int)rad_min And:(int)rad_max
-{
-    double mass = arc4random() % (mass_max - mass_min) + mass_min;
-    double radius = arc4random() % (rad_max - rad_min) + rad_min;
-    self = [[BallController alloc] initWithMass:mass AndRadius:radius];
     return self;
 }
 

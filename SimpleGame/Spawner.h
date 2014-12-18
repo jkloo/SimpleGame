@@ -11,17 +11,17 @@
 
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
-#import "BallController.h"
+#import "BlackHole.h"
 
-@interface Spawner : NSObject
+@interface Spawner : SKSpriteNode
 
-@property CGPoint location;
 @property CGVector vector;
-@property float force;
+@property float velocity;
 
--(id)initWithLocation:(CGPoint)location Vector:(CGVector)vector AndForce:(float)force;
--(BallController*)spawnObject;
--(void)fireObject:(BallController*)ball;
+-(id)initWithLocation:(CGPoint)location Vector:(CGVector)vector AndVelocity:(float)velocity;
+-(BlackHole*)spawnObject;
+-(void)fireObject:(BlackHole*)ball;
+-(void)spawnAndFireObject;
 
 @end
 

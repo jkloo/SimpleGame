@@ -19,7 +19,7 @@
 		60B9A7911A3C8D0400373394 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60B9A78F1A3C8D0400373394 /* LaunchScreen.xib */; };
 		60B9A79D1A3C8D0500373394 /* SimpleGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A79C1A3C8D0500373394 /* SimpleGameTests.m */; };
 		60B9A7A71A3CA21500373394 /* ShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7A61A3CA21500373394 /* ShipController.m */; };
-		60B9A7AB1A3D4CFA00373394 /* BallController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7AA1A3D4CFA00373394 /* BallController.m */; };
+		60B9A7AB1A3D4CFA00373394 /* BlackHole.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7AA1A3D4CFA00373394 /* BlackHole.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +53,8 @@
 		60B9A79C1A3C8D0500373394 /* SimpleGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleGameTests.m; sourceTree = "<group>"; };
 		60B9A7A61A3CA21500373394 /* ShipController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipController.m; sourceTree = "<group>"; };
 		60B9A7A91A3CA24000373394 /* ShipController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShipController.h; sourceTree = "<group>"; };
-		60B9A7AA1A3D4CFA00373394 /* BallController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallController.m; sourceTree = "<group>"; };
-		60B9A7AC1A3D4D1900373394 /* BallController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallController.h; sourceTree = "<group>"; };
+		60B9A7AA1A3D4CFA00373394 /* BlackHole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlackHole.m; sourceTree = "<group>"; };
+		60B9A7AC1A3D4D1900373394 /* BlackHole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackHole.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,10 +98,10 @@
 			children = (
 				60B9A7A91A3CA24000373394 /* ShipController.h */,
 				60B9A7A61A3CA21500373394 /* ShipController.m */,
-				60B9A7AC1A3D4D1900373394 /* BallController.h */,
-				60B9A7AA1A3D4CFA00373394 /* BallController.m */,
-				609092ED1A3F9C0B002954D4 /* Spawner.m */,
+				60B9A7AC1A3D4D1900373394 /* BlackHole.h */,
+				60B9A7AA1A3D4CFA00373394 /* BlackHole.m */,
 				609092EF1A3F9C29002954D4 /* Spawner.h */,
+				609092ED1A3F9C0B002954D4 /* Spawner.m */,
 				60B9A77F1A3C8D0400373394 /* AppDelegate.h */,
 				60B9A7801A3C8D0400373394 /* AppDelegate.m */,
 				60B9A7821A3C8D0400373394 /* GameScene.h */,
@@ -246,7 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60B9A7AB1A3D4CFA00373394 /* BallController.m in Sources */,
+				60B9A7AB1A3D4CFA00373394 /* BlackHole.m in Sources */,
 				609092EE1A3F9C0B002954D4 /* Spawner.m in Sources */,
 				60B9A7A71A3CA21500373394 /* ShipController.m in Sources */,
 				60B9A7891A3C8D0400373394 /* GameViewController.m in Sources */,

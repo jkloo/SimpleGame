@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Jeff Kloosterman. All rights reserved.
 //
 
-#ifndef SimpleGame_BallController_h
-#define SimpleGame_BallController_h
+#ifndef SimpleGame_BlackHole_h
+#define SimpleGame_BlackHole_h
 
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
 
-@interface BallController : SKSpriteNode
+@interface BlackHole : SKSpriteNode
 
 @property float radius;
 @property double min_mass;
@@ -23,8 +23,6 @@
 
 -(id)init;
 -(id)initWithMass:(float)mass AndRadius:(float)radius;
--(id)initWithRandomMassBetween:(int)mass_min And:(int)mass_max AndRadius:(int)rad_min And:(int)rad_max;
-
 -(void)updateSize:(float)radius;
 -(void)setupPhysicsBodyWithMass:(float)mass AndRadius:(float)radius;
 

@@ -25,7 +25,7 @@
     self = [super init];
     if(self)
     {
-        self.ship = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
+        self.ship = [SKSpriteNode spriteNodeWithImageNamed:@"BlueShip"];
         self.ship.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.ship.frame.size];
         self.ship.physicsBody.affectedByGravity = NO;
         self.ship.physicsBody.dynamic = YES;

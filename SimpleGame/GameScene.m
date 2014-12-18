@@ -7,18 +7,20 @@
 //
 
 #import "GameScene.h"
-#import "BallController.h"
+#import "BlackHole.h"
 #import "Spawner.h"
 
 @interface GameScene ()
 
 @property double GRAV_CONST;
 @property NSTimeInterval touch_begin;
-@property BallController* placing_ball;
-@property Spawner* spawner1;
+@property BlackHole* placing_ball;
+@property NSArray* spawners;
+
+@property float screen_height;
+@property float screen_width;
 
 @end
-
 
 
 @implementation GameScene
@@ -28,19 +30,23 @@
     /* Setup your scene here */
     self.GRAV_CONST = 6.674 * pow(10, -11) * pow(10, 13);
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
-    self.spawner1 = [[Spawner alloc] initWithLocation:CGPointMake(10, 500) Vector:CGVectorMake(1, 0) AndForce:10000];
-    BallController* ball = [self.spawner1 spawnObject];
-    [self addChild:ball];
-    [self.spawner1 fireObject:ball];
+    self.screen_height = [[UIScreen mainScreen] bounds].size.height;
+    self.screen_width = [[UIScreen mainScreen] bounds].size.width;
     
-    for(int i=0; i<10; i++)
+    Spawner* sp0 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 1/6) Vector:CGVectorMake(1, 0)AndVelocity:200];
+    Spawner* sp1 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 2/6) Vector:CGVectorMake(1, 0)AndVelocity:200];
+    Spawner* sp2 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 3/6) Vector:CGVectorMake(1, 0)AndVelocity:200];
+    Spawner* sp3 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 4/6) Vector:CGVectorMake(1, 0)AndVelocity:200];
+    Spawner* sp4 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 5/6) Vector:CGVectorMake(1, 0)AndVelocity:200];
+    
+    self.spawners = [NSArray arrayWithObjects:sp0, sp1, sp2, sp3, sp4, nil];
+    for (Spawner* spawner in self.spawners)
     {
-        int x = arc4random() % (int)([[UIScreen mainScreen] bounds].size.width + 1);
-        int y = arc4random() % (int)([[UIScreen mainScreen] bounds].size.height + 1);
-        double n = arc4random() % (20 - 5) + 5;
-        BallController* ball = [[BallController alloc] initWithMass:n AndRadius:n];
-        ball.position = CGPointMake(x, y);
-        [self addChild:ball];
+        [self addChild:spawner];
+    }
+    for (Spawner* spawner in self.spawners)
+    {
+        [spawner spawnAndFireObject];
     }
 }
 
@@ -51,7 +57,7 @@
     for (UITouch *touch in touches)
     {
         self.touch_begin = touch.timestamp;
-        self.placing_ball = [[BallController alloc] initWithMass:0 AndRadius:0];
+        self.placing_ball = [[BlackHole alloc] initWithMass:0 AndRadius:0];
         self.placing_ball.position = [touch locationInNode:self];
         [self addChild:self.placing_ball];
         break;
@@ -101,30 +107,35 @@
         [self.placing_ball setupPhysicsBodyWithMass:mass AndRadius:radius];
     }
     
-    for (BallController* ball_1 in self.children)
+    for (BlackHole* hole_1 in self.children)
     {
-        for(BallController* ball_2 in self.children)
+        for(BlackHole* hole_2 in self.children)
         {
-            if (ball_1 == ball_2) {
+            if (hole_1 == hole_2)
+            {
                 continue;
             }
-            double delta_x = ball_2.position.x - ball_1.position.x;
-            double delta_y = ball_2.position.y - ball_1.position.y;
-            double hypo = sqrt(pow(delta_x, 2) + pow(delta_y, 2));
-            double force_mag = [self CalculateGravityForceBetweenBall1:ball_1 AndBall2:ball_2];
-            CGVector force = CGVectorMake(force_mag * delta_x/hypo, force_mag * delta_y/hypo);
-            if(!ball_1.stationary)
+            if(![hole_1 isKindOfClass:[BlackHole class]] || ![hole_2 isKindOfClass:[BlackHole class]])
             {
-                [ball_1.physicsBody applyForce:force];
+                continue;
+            }
+            double delta_x = hole_2.position.x - hole_1.position.x;
+            double delta_y = hole_2.position.y - hole_1.position.y;
+            double hypo = sqrt(pow(delta_x, 2) + pow(delta_y, 2));
+            double force_mag = [self CalculateGravityForceBetweenBall1:hole_1 AndBall2:hole_2];
+            CGVector force = CGVectorMake(force_mag * delta_x/hypo, force_mag * delta_y/hypo);
+            if(!hole_1.stationary)
+            {
+                [hole_1.physicsBody applyForce:force];
             }
         }
     }
 }
 
--(double)CalculateGravityForceBetweenBall1:(BallController*)ball_1 AndBall2:(BallController*)ball_2
+-(double)CalculateGravityForceBetweenBall1:(BlackHole*)hole_1 AndBall2:(BlackHole*)hole_2
 {
-    double rad_square = pow(ball_1.position.x - ball_2.position.x, 2) + pow(ball_1.position.y - ball_2.position.y, 2);
-    return self.GRAV_CONST * ball_1.physicsBody.mass * ball_2.physicsBody.mass / rad_square;
+    double rad_square = pow(hole_1.position.x - hole_2.position.x, 2) + pow(hole_1.position.y - hole_2.position.y, 2);
+    return self.GRAV_CONST * hole_1.physicsBody.mass * hole_2.physicsBody.mass / rad_square;
 }
 
 -(double)durationToRadius:(NSTimeInterval)duration
