@@ -1,5 +1,5 @@
 //
-//  BallController.m
+//  BlackHole.m
 //  SimpleGame
 //
 //  Created by Jeff Kloosterman on 12/13/14.
@@ -10,13 +10,9 @@
 
 @interface BlackHole()
 
--(double)constrainMass:(double)mass;
--(double)constrainRadius:(double)radius;
--(double)constrainValue:(double)value Between:(double)min And:(double)max;
-
 @end
 
-@implementation BlackHole : SKSpriteNode
+@implementation BlackHole : CelestialBody
 
 -(id)init
 {
@@ -24,16 +20,16 @@
     return self;
 }
 
--(id)initWithMass:(float)mass AndRadius:(float)radius
+-(id)initWithMass:(double)mass AndRadius:(double)radius
 {
     self = [super initWithImageNamed:@"BluePlanet"];
     if(self)
     {
-        self.stationary = NO;
-        self.min_mass = 5;
-        self.max_mass = 100;
-        self.min_radius = 5;
-        self.max_radius = 50;
+        self.stationary = YES;
+        self.mass_min = 5;
+        self.mass_max = 100;
+        self.radius_min = 5;
+        self.radius_max = 50;
         
         [self updateSize:[self constrainRadius:radius]];
         [self setupPhysicsBodyWithMass:mass AndRadius:radius];
@@ -43,36 +39,18 @@
     return self;
 }
 
--(double)constrainMass:(double)mass
-{
-    return [self constrainValue:mass Between:self.min_mass And:self.max_mass];
-}
-
 -(double)constrainRadius:(double)radius
 {
-    return [self constrainValue:radius Between:self.min_radius And:self.max_radius];
+    return [self constrainValue:radius Between:self.radius_min And:self.radius_max];
 }
 
--(double)constrainValue:(double)value Between:(double)min And:(double)max
-{
-    if(value < min)
-    {
-        value = min;
-    }
-    else if (value > max)
-    {
-        value = max;
-    }
-    return value;
-}
-
--(void)updateSize:(float)radius
+-(void)updateSize:(double)radius
 {
     self.radius = [self constrainRadius:radius];
     self.size = CGSizeMake(self.radius * 2, self.radius * 2);
 }
 
--(void)setupPhysicsBodyWithMass:(float)mass AndRadius:(float)radius
+-(void)setupPhysicsBodyWithMass:(double)mass AndRadius:(double)radius
 {
     self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:[self constrainRadius:radius]];
     self.physicsBody.dynamic = YES;

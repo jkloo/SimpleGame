@@ -1,5 +1,5 @@
 //
-//  BallController.h
+//  BlackHole.h
 //  SimpleGame
 //
 //  Created by Jeff Kloosterman on 12/13/14.
@@ -11,20 +11,19 @@
 
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
+#import "CelestialBody.h"
 
-@interface BlackHole : SKSpriteNode
+@interface BlackHole : CelestialBody
 
-@property float radius;
-@property double min_mass;
-@property double max_mass;
-@property double min_radius;
-@property double max_radius;
-@property bool stationary;
+@property double radius;
+@property double radius_min;
+@property double radius_max;
 
 -(id)init;
--(id)initWithMass:(float)mass AndRadius:(float)radius;
--(void)updateSize:(float)radius;
--(void)setupPhysicsBodyWithMass:(float)mass AndRadius:(float)radius;
+-(id)initWithMass:(double)mass AndRadius:(double)radius;
+-(void)updateSize:(double)radius;
+-(void)setupPhysicsBodyWithMass:(double)mass AndRadius:(double)radius;
+-(double)constrainRadius:(double)radius;
 
 @end
 
