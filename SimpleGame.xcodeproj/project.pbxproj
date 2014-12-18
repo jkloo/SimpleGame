@@ -19,7 +19,7 @@
 		60B9A78E1A3C8D0400373394 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60B9A78D1A3C8D0400373394 /* Images.xcassets */; };
 		60B9A7911A3C8D0400373394 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60B9A78F1A3C8D0400373394 /* LaunchScreen.xib */; };
 		60B9A79D1A3C8D0500373394 /* SimpleGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A79C1A3C8D0500373394 /* SimpleGameTests.m */; };
-		60B9A7A71A3CA21500373394 /* ShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7A61A3CA21500373394 /* ShipController.m */; };
+		60B9A7A71A3CA21500373394 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7A61A3CA21500373394 /* Ship.m */; };
 		60B9A7AB1A3D4CFA00373394 /* BlackHole.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7AA1A3D4CFA00373394 /* BlackHole.m */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +54,8 @@
 		60B9A7961A3C8D0500373394 /* SimpleGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60B9A79B1A3C8D0500373394 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60B9A79C1A3C8D0500373394 /* SimpleGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleGameTests.m; sourceTree = "<group>"; };
-		60B9A7A61A3CA21500373394 /* ShipController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipController.m; sourceTree = "<group>"; };
-		60B9A7A91A3CA24000373394 /* ShipController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShipController.h; sourceTree = "<group>"; };
+		60B9A7A61A3CA21500373394 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
+		60B9A7A91A3CA24000373394 /* Ship.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
 		60B9A7AA1A3D4CFA00373394 /* BlackHole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlackHole.m; sourceTree = "<group>"; };
 		60B9A7AC1A3D4D1900373394 /* BlackHole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackHole.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,8 +99,8 @@
 		60B9A77A1A3C8D0400373394 /* SimpleGame */ = {
 			isa = PBXGroup;
 			children = (
-				60B9A7A91A3CA24000373394 /* ShipController.h */,
-				60B9A7A61A3CA21500373394 /* ShipController.m */,
+				60B9A7A91A3CA24000373394 /* Ship.h */,
+				60B9A7A61A3CA21500373394 /* Ship.m */,
 				60B9A7AC1A3D4D1900373394 /* BlackHole.h */,
 				60B9A7AA1A3D4CFA00373394 /* BlackHole.m */,
 				604969FE1A427B4E009D7B33 /* CelestialBody.h */,
@@ -253,7 +253,7 @@
 			files = (
 				60B9A7AB1A3D4CFA00373394 /* BlackHole.m in Sources */,
 				609092EE1A3F9C0B002954D4 /* Spawner.m in Sources */,
-				60B9A7A71A3CA21500373394 /* ShipController.m in Sources */,
+				60B9A7A71A3CA21500373394 /* Ship.m in Sources */,
 				60B9A7891A3C8D0400373394 /* GameViewController.m in Sources */,
 				60B9A7811A3C8D0400373394 /* AppDelegate.m in Sources */,
 				60B9A7841A3C8D0400373394 /* GameScene.m in Sources */,

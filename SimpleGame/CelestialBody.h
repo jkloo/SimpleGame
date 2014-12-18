@@ -19,7 +19,8 @@
 @property float mass_max;
 
 -(id)init;
--(id)initWithMass:(float)mass;
+-(id)initWithImageNamed:(NSString *)name;
+-(id)initWithImageNamed:(NSString*)name AndMass:(float)mass;
 -(void)updateSize:(CGSize*)size;
 -(void)setupPhysicsBodyWithMass:(float)mass;
 -(double)constrainMass:(double)mass;

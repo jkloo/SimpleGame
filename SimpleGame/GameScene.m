@@ -98,9 +98,6 @@
     if(self.placing_ball)
     {
         NSTimeInterval now = [[NSProcessInfo processInfo] systemUptime];
-        NSLog(@"Now: %f", now);
-        NSLog(@"Begin: %f", self.touch_begin);
-        NSLog(@"Duration: %f", (now - self.touch_begin));
         double radius = [self durationToRadius:(now - self.touch_begin)];
         double mass = [self durationToMass:(now - self.touch_begin)];
         [self.placing_ball updateSize:radius];

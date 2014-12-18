@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Spawner.h"
 #import "BlackHole.h"
+#import "Ship.h"
 
 @interface Spawner()
 
@@ -28,12 +29,12 @@
     return self;
 }
 
--(BlackHole*)spawnObject
+-(Ship*)spawnObject
 {
-    BlackHole* hole = [[BlackHole alloc] initWithMass:25 AndRadius:25];
-    hole.position = self.position;
-    [[self parent] addChild:hole];
-    return hole;
+    Ship* ship = [[Ship alloc] init];
+    ship.position = self.position;
+    [[self parent] addChild:ship];
+    return ship;
 }
 
 -(void)fireObject:(BlackHole*)hole
