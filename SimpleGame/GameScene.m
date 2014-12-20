@@ -9,6 +9,7 @@
 #import "GameScene.h"
 #import "BlackHole.h"
 #import "Spawner.h"
+#import "ExitPortal.h"
 #import "Collisions.h"
 
 @interface GameScene ()
@@ -17,6 +18,7 @@
 @property NSTimeInterval touch_begin;
 @property BlackHole* placing_ball;
 @property NSArray* spawners;
+@property ExitPortal* exit_portal;
 
 @property float screen_height;
 @property float screen_width;
@@ -29,6 +31,9 @@
 -(void)didMoveToView:(SKView *)view
 {
     /* Setup your scene here */
+
+    self.physicsWorld.contactDelegate = self;
+
     self.GRAV_CONST = 6.674 * pow(10, -11) * pow(10, 13);
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
     self.screen_height = [[UIScreen mainScreen] bounds].size.height;
@@ -54,6 +59,10 @@
         [self runAction:[SKAction repeatActionForever:[SKAction sequence:[NSArray arrayWithObjects:waitForSelect, fire, waitForFire, nil]]] withKey:[NSString stringWithFormat:@"sp%d", i]];
         i++;
     }
+
+    self.exit_portal = [[ExitPortal alloc] initWithLocation:CGPointMake(self.screen_width - 50, self.screen_height / 2)];
+    [self addChild:self.exit_portal];
+
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -176,6 +185,11 @@
         }
 
     }
+}
+
+-(void)didBeginContact:(SKPhysicsContact *)contact
+{
+    NSLog(@"CONTACT!!");
 }
 
 @end

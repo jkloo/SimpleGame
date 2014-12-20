@@ -15,11 +15,12 @@ static const uint32_t WORLD_CATEGORY = 0x00000001;
 static const uint32_t SHIP_CATEGORY = 0x00000010;
 static const uint32_t BLACKHOLE_CATEGORY = 0x00000100;
 static const uint32_t PORTAL_CATEGORY = 0x00001000;
+static const uint32_t EXIT_CATEGORY = 0x00010000;
 
 
 static const uint32_t WORLD_CONTACTS = SHIP_CATEGORY;
-static const uint32_t SHIP_CONTACTS = SHIP_CATEGORY | PORTAL_CATEGORY;
-static const uint32_t PORTAL_CONTACTS = SHIP_CATEGORY;
+static const uint32_t SHIP_CONTACTS = SHIP_CATEGORY | EXIT_CATEGORY;
+static const uint32_t PORTAL_CONTACTS = 0;
 static const uint32_t BLACKHOLE_CONTACTS = 0;
 
 static const uint32_t WORLD_COLLIDES = 0;

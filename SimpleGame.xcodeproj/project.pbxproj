@@ -23,6 +23,7 @@
 		60B9A7A71A3CA21500373394 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7A61A3CA21500373394 /* Ship.m */; };
 		60B9A7AB1A3D4CFA00373394 /* BlackHole.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7AA1A3D4CFA00373394 /* BlackHole.m */; };
 		60D1A7391A455644006335D1 /* BlueShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D1A7381A455644006335D1 /* BlueShip.m */; };
+		60D1A73C1A45D913006335D1 /* ExitPortal.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D1A73B1A45D913006335D1 /* ExitPortal.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		60D1A7361A454B37006335D1 /* Collisions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Collisions.h; sourceTree = "<group>"; };
 		60D1A7371A455644006335D1 /* BlueShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueShip.h; sourceTree = "<group>"; };
 		60D1A7381A455644006335D1 /* BlueShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueShip.m; sourceTree = "<group>"; };
+		60D1A73A1A45D8FD006335D1 /* ExitPortal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExitPortal.h; sourceTree = "<group>"; };
+		60D1A73B1A45D913006335D1 /* ExitPortal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExitPortal.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,8 @@
 				604969FC1A427B43009D7B33 /* CelestialBody.m */,
 				609092EF1A3F9C29002954D4 /* Spawner.h */,
 				609092ED1A3F9C0B002954D4 /* Spawner.m */,
+				60D1A73A1A45D8FD006335D1 /* ExitPortal.h */,
+				60D1A73B1A45D913006335D1 /* ExitPortal.m */,
 				60B9A77F1A3C8D0400373394 /* AppDelegate.h */,
 				60B9A7801A3C8D0400373394 /* AppDelegate.m */,
 				60B9A7821A3C8D0400373394 /* GameScene.h */,
@@ -264,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60D1A7391A455644006335D1 /* BlueShip.m in Sources */,
+				60D1A73C1A45D913006335D1 /* ExitPortal.m in Sources */,
 				60B9A7AB1A3D4CFA00373394 /* BlackHole.m in Sources */,
 				609092EE1A3F9C0B002954D4 /* Spawner.m in Sources */,
 				60B9A7A71A3CA21500373394 /* Ship.m in Sources */,

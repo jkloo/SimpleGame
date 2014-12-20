@@ -41,6 +41,7 @@
 -(void)changePortalType:(enum PORTAL_TYPE)new_type
 {
     if(new_type == self.portal_type)
+        
     {
         return;
     }
