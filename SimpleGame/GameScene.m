@@ -9,6 +9,7 @@
 #import "GameScene.h"
 #import "BlackHole.h"
 #import "Spawner.h"
+#import "Collisions.h"
 
 @interface GameScene ()
 
@@ -33,20 +34,25 @@
     self.screen_height = [[UIScreen mainScreen] bounds].size.height;
     self.screen_width = [[UIScreen mainScreen] bounds].size.width;
     
-    Spawner* sp0 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 1/6) Vector:CGVectorMake(1, 0)AndVelocity:200];
-    Spawner* sp1 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 2/6) Vector:CGVectorMake(1, 0)AndVelocity:200];
-    Spawner* sp2 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 3/6) Vector:CGVectorMake(1, 0)AndVelocity:200];
-    Spawner* sp3 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 4/6) Vector:CGVectorMake(1, 0)AndVelocity:200];
-    Spawner* sp4 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 5/6) Vector:CGVectorMake(1, 0)AndVelocity:200];
+    Spawner* sp0 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 1/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
+    Spawner* sp1 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 2/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
+    Spawner* sp2 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 3/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
+    Spawner* sp3 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 4/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
+    Spawner* sp4 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 5/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
     
     self.spawners = [NSArray arrayWithObjects:sp0, sp1, sp2, sp3, sp4, nil];
+    [self selectActivePortals];
+    SKAction* waitForSelect = [SKAction waitForDuration:2];
+    SKAction* waitForFire = [SKAction waitForDuration:5];
+    [self runAction:[SKAction repeatActionForever:[SKAction sequence:[NSArray arrayWithObjects:[SKAction performSelector:@selector(selectActivePortals) onTarget:self], waitForSelect, waitForFire, nil]]] withKey:@"ChangeActiveSpawner"];
+    
+    int i = 0;
     for (Spawner* spawner in self.spawners)
     {
         [self addChild:spawner];
-    }
-    for (Spawner* spawner in self.spawners)
-    {
-        [spawner spawnAndFireObject];
+        SKAction* fire = [SKAction performSelector:@selector(spawnAndFireObject) onTarget:spawner];
+        [self runAction:[SKAction repeatActionForever:[SKAction sequence:[NSArray arrayWithObjects:waitForSelect, fire, waitForFire, nil]]] withKey:[NSString stringWithFormat:@"sp%d", i]];
+        i++;
     }
 }
 
@@ -104,32 +110,33 @@
         [self.placing_ball setupPhysicsBodyWithMass:mass AndRadius:radius];
     }
     
-    for (BlackHole* hole_1 in self.children)
-    {
-        for(BlackHole* hole_2 in self.children)
-        {
-            if (hole_1 == hole_2)
-            {
-                continue;
-            }
-            if(![hole_1 isKindOfClass:[BlackHole class]] || ![hole_2 isKindOfClass:[BlackHole class]])
-            {
-                continue;
-            }
-            double delta_x = hole_2.position.x - hole_1.position.x;
-            double delta_y = hole_2.position.y - hole_1.position.y;
-            double hypo = sqrt(pow(delta_x, 2) + pow(delta_y, 2));
-            double force_mag = [self CalculateGravityForceBetweenBall1:hole_1 AndBall2:hole_2];
-            CGVector force = CGVectorMake(force_mag * delta_x/hypo, force_mag * delta_y/hypo);
-            if(!hole_1.stationary)
-            {
-                [hole_1.physicsBody applyForce:force];
-            }
-        }
-    }
+//    for (CelestialBody* body1 in self.children)
+//    {
+//        for(CelestialBody* body2 in self.children)
+//        {
+//            if (body1 == body2)
+//            {
+//                continue;
+//            }
+//            if(![body1 isKindOfClass:[CelestialBody class]] || ![body2 isKindOfClass:[CelestialBody class]])
+//            {
+//                continue;
+//            }
+//            double delta_x = body2.position.x - body1.position.x;
+//            double delta_y = body2.position.y - body1.position.y;
+//            double hypo = sqrt(pow(delta_x, 2) + pow(delta_y, 2));
+//            double force_mag = [self calculateGravityForceBetweenBody1:body1 AndBody2:body2];
+//            CGVector force = CGVectorMake(force_mag * delta_x/hypo, force_mag * delta_y/hypo);
+//            if(!body1.stationary)
+//            {
+//                [body1.physicsBody applyForce:force];
+//                NSLog(@"Applied a force of: %f", force_mag);
+//            }
+//        }
+//    }
 }
 
--(double)CalculateGravityForceBetweenBall1:(BlackHole*)hole_1 AndBall2:(BlackHole*)hole_2
+-(double)calculateGravityForceBetweenBody1:(CelestialBody*)hole_1 AndBody2:(CelestialBody*)hole_2
 {
     double rad_square = pow(hole_1.position.x - hole_2.position.x, 2) + pow(hole_1.position.y - hole_2.position.y, 2);
     return self.GRAV_CONST * hole_1.physicsBody.mass * hole_2.physicsBody.mass / rad_square;
@@ -143,6 +150,32 @@
 -(double)durationToMass:(NSTimeInterval)duration
 {
     return (double)(30 * duration);
+}
+
+-(void)selectActivePortals
+{
+    NSUInteger red = arc4random() % 5;
+    NSUInteger blue = red;
+    while (blue == red)
+    {
+        blue = arc4random() % 5;
+    }
+    for (NSUInteger i = 0; i < self.spawners.count; i++)
+    {
+        if (i == red)
+        {
+            [self.spawners[i] changePortalType:RED];
+        }
+        else if (i == blue)
+        {
+            [self.spawners[i] changePortalType:BLUE];
+        }
+        else
+        {
+            [self.spawners[i] changePortalType:GRAY];
+        }
+
+    }
 }
 
 @end

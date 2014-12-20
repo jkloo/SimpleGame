@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		604969F91A414239009D7B33 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60B9A77C1A3C8D0400373394 /* Info.plist */; };
 		604969FD1A427B43009D7B33 /* CelestialBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 604969FC1A427B43009D7B33 /* CelestialBody.m */; };
+		60496A011A43C8B8009D7B33 /* RedShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 60496A001A43C8B8009D7B33 /* RedShip.m */; };
 		609092EE1A3F9C0B002954D4 /* Spawner.m in Sources */ = {isa = PBXBuildFile; fileRef = 609092ED1A3F9C0B002954D4 /* Spawner.m */; };
 		60B9A77E1A3C8D0400373394 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A77D1A3C8D0400373394 /* main.m */; };
 		60B9A7811A3C8D0400373394 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7801A3C8D0400373394 /* AppDelegate.m */; };
@@ -21,6 +22,7 @@
 		60B9A79D1A3C8D0500373394 /* SimpleGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A79C1A3C8D0500373394 /* SimpleGameTests.m */; };
 		60B9A7A71A3CA21500373394 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7A61A3CA21500373394 /* Ship.m */; };
 		60B9A7AB1A3D4CFA00373394 /* BlackHole.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7AA1A3D4CFA00373394 /* BlackHole.m */; };
+		60D1A7391A455644006335D1 /* BlueShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D1A7381A455644006335D1 /* BlueShip.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 /* Begin PBXFileReference section */
 		604969FC1A427B43009D7B33 /* CelestialBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CelestialBody.m; sourceTree = "<group>"; };
 		604969FE1A427B4E009D7B33 /* CelestialBody.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CelestialBody.h; sourceTree = "<group>"; };
+		604969FF1A43C8A6009D7B33 /* RedShip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedShip.h; sourceTree = "<group>"; };
+		60496A001A43C8B8009D7B33 /* RedShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedShip.m; sourceTree = "<group>"; };
 		609092ED1A3F9C0B002954D4 /* Spawner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spawner.m; sourceTree = "<group>"; };
 		609092EF1A3F9C29002954D4 /* Spawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spawner.h; sourceTree = "<group>"; };
 		60B9A7781A3C8D0400373394 /* SimpleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +62,9 @@
 		60B9A7A91A3CA24000373394 /* Ship.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
 		60B9A7AA1A3D4CFA00373394 /* BlackHole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlackHole.m; sourceTree = "<group>"; };
 		60B9A7AC1A3D4D1900373394 /* BlackHole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackHole.h; sourceTree = "<group>"; };
+		60D1A7361A454B37006335D1 /* Collisions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Collisions.h; sourceTree = "<group>"; };
+		60D1A7371A455644006335D1 /* BlueShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueShip.h; sourceTree = "<group>"; };
+		60D1A7381A455644006335D1 /* BlueShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueShip.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +106,13 @@
 		60B9A77A1A3C8D0400373394 /* SimpleGame */ = {
 			isa = PBXGroup;
 			children = (
+				60D1A7361A454B37006335D1 /* Collisions.h */,
 				60B9A7A91A3CA24000373394 /* Ship.h */,
 				60B9A7A61A3CA21500373394 /* Ship.m */,
+				604969FF1A43C8A6009D7B33 /* RedShip.h */,
+				60496A001A43C8B8009D7B33 /* RedShip.m */,
+				60D1A7371A455644006335D1 /* BlueShip.h */,
+				60D1A7381A455644006335D1 /* BlueShip.m */,
 				60B9A7AC1A3D4D1900373394 /* BlackHole.h */,
 				60B9A7AA1A3D4CFA00373394 /* BlackHole.m */,
 				604969FE1A427B4E009D7B33 /* CelestialBody.h */,
@@ -251,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60D1A7391A455644006335D1 /* BlueShip.m in Sources */,
 				60B9A7AB1A3D4CFA00373394 /* BlackHole.m in Sources */,
 				609092EE1A3F9C0B002954D4 /* Spawner.m in Sources */,
 				60B9A7A71A3CA21500373394 /* Ship.m in Sources */,
@@ -259,6 +272,7 @@
 				60B9A7841A3C8D0400373394 /* GameScene.m in Sources */,
 				604969FD1A427B43009D7B33 /* CelestialBody.m in Sources */,
 				60B9A77E1A3C8D0400373394 /* main.m in Sources */,
+				60496A011A43C8B8009D7B33 /* RedShip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

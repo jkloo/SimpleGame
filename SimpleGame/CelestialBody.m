@@ -27,7 +27,7 @@
     {
         self.stationary = NO;
         self.mass_min = 0;
-        self.mass_max = 100;
+        self.mass_max = 10;
         [self setupPhysicsBodyWithMass:10];
     }
     return self;
@@ -73,5 +73,7 @@
     self.physicsBody.affectedByGravity = NO;
     self.physicsBody.allowsRotation = NO;
     self.physicsBody.mass = [self constrainMass:mass];
+    self.physicsBody.friction = 0.0;
+    self.physicsBody.restitution = 0.9;
 }
 @end

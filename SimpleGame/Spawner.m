@@ -10,45 +10,82 @@
 #import "Spawner.h"
 #import "BlackHole.h"
 #import "Ship.h"
+#import "RedShip.h"
+#import "BlueShip.h"
+#import "Collisions.h"
 
 @interface Spawner()
 
 @end
 
-@implementation Spawner : SKSpriteNode
+@implementation Spawner : CelestialBody
 
 -(id)initWithLocation:(CGPoint)location Vector:(CGVector)vector AndVelocity:(float)velocity
 {
-    self = [super initWithImageNamed:@"BluePortal"];
+    self = [super initWithImageNamed:@"GrayPortal"];
     if(self)
     {
+        self.portal_type = GRAY;
         self.position = location;
         self.vector = vector;
         self.velocity = velocity;
+        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
+        self.physicsBody.dynamic = NO;
+        self.physicsBody.categoryBitMask = PORTAL_CATEGORY;
+        self.physicsBody.contactTestBitMask = PORTAL_CONTACTS;
+        self.physicsBody.collisionBitMask = PORTAL_COLLIDES;
     }
     return self;
 }
 
--(Ship*)spawnObject
+-(void)changePortalType:(enum PORTAL_TYPE)new_type
 {
-    Ship* ship = [[Ship alloc] init];
-    ship.position = self.position;
-    [[self parent] addChild:ship];
-    return ship;
-}
-
--(void)fireObject:(BlackHole*)hole
-{
-    if(hole.physicsBody)
+    if(new_type == self.portal_type)
     {
-        CGVector velocity_vector = CGVectorMake(self.velocity * self.vector.dx, self.velocity * self.vector.dy);
-        hole.physicsBody.velocity = velocity_vector;
+        return;
+    }
+    self.portal_type = new_type;
+    switch (self.portal_type) {
+        case BLUE:
+            self.texture = [SKTexture textureWithImageNamed:@"BluePortal"];
+            break;
+        case RED:
+            self.texture = [SKTexture textureWithImageNamed:@"RedPortal"];
+            break;
+        case GRAY:
+        default:
+            self.texture = [SKTexture textureWithImageNamed:@"GrayPortal"];
+            break;
     }
 }
 
 -(void)spawnAndFireObject
 {
-    [self fireObject:[self spawnObject]];
+    Ship* ship;
+    if(self.portal_type == BLUE)
+    {
+        ship = [[BlueShip alloc] init];
+    }
+    else if (self.portal_type == RED)
+    {
+        ship = [[RedShip alloc] init];
+    }
+    else
+    {
+        return;
+    }
+    ship.position = self.position;
+    [[self parent] addChild:ship];
+    if(ship.physicsBody)
+    {
+        CGVector velocity_vector = CGVectorMake(self.velocity * self.vector.dx, self.velocity * self.vector.dy);
+        ship.physicsBody.velocity = velocity_vector;
+    }
+}
+
+-(void)spawnAndFireObjectWithTimer:(NSTimer*)timer
+{
+    [self spawnAndFireObject];
 }
 
 @end

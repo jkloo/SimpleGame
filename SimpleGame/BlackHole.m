@@ -7,6 +7,7 @@
 //
 
 #import "BlackHole.h"
+#import "Collisions.h"
 
 @interface BlackHole()
 
@@ -27,14 +28,12 @@
     {
         self.stationary = YES;
         self.mass_min = 5;
-        self.mass_max = 100;
+        self.mass_max = 1000;
         self.radius_min = 5;
         self.radius_max = 50;
         
         [self updateSize:[self constrainRadius:radius]];
         [self setupPhysicsBodyWithMass:mass AndRadius:radius];
-        
-
     }
     return self;
 }
@@ -57,5 +56,8 @@
     self.physicsBody.affectedByGravity = NO;
     self.physicsBody.allowsRotation = NO;
     self.physicsBody.mass = [self constrainMass:mass];
+    self.physicsBody.categoryBitMask = BLACKHOLE_CATEGORY;
+    self.physicsBody.collisionBitMask = BLACKHOLE_COLLIDES;
+    self.physicsBody.contactTestBitMask = BLACKHOLE_CONTACTS;
 }
 @end

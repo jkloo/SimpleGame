@@ -15,6 +15,8 @@
 
 @interface Ship : CelestialBody
 
+-(id)initWithImageNamed:(NSString *)name;
+
 @end
 
 #endif

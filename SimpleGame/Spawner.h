@@ -11,17 +11,25 @@
 
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
-#import "BlackHole.h"
+#import "CelestialBody.h"
 
-@interface Spawner : SKSpriteNode
+enum PORTAL_TYPE
+{
+    GRAY,
+    RED,
+    BLUE
+};
+
+@interface Spawner : CelestialBody
 
 @property CGVector vector;
 @property float velocity;
+@property enum PORTAL_TYPE portal_type;
 
 -(id)initWithLocation:(CGPoint)location Vector:(CGVector)vector AndVelocity:(float)velocity;
--(BlackHole*)spawnObject;
--(void)fireObject:(BlackHole*)ball;
 -(void)spawnAndFireObject;
+-(void)spawnAndFireObjectWithTimer:(NSTimer*)timer;
+-(void)changePortalType:(enum PORTAL_TYPE)new_type;
 
 @end
 
