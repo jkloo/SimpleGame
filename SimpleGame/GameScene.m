@@ -31,13 +31,16 @@
 -(void)didMoveToView:(SKView *)view
 {
     /* Setup your scene here */
-
-    self.physicsWorld.contactDelegate = self;
-
     self.GRAV_CONST = 6.674 * pow(10, -11) * pow(10, 13);
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
     self.screen_height = [[UIScreen mainScreen] bounds].size.height;
     self.screen_width = [[UIScreen mainScreen] bounds].size.width;
+
+    self.physicsWorld.contactDelegate = self;
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.screen_width, self.screen_height)center:CGPointMake(self.screen_width/2, self.screen_height/2)];
+    self.physicsBody.categoryBitMask = WORLD_CATEGORY;
+    self.physicsBody.contactTestBitMask = WORLD_CONTACTS;
+    self.physicsBody.collisionBitMask = WORLD_COLLIDES;
     
     Spawner* sp0 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 1/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
     Spawner* sp1 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 2/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
@@ -189,7 +192,77 @@
 
 -(void)didBeginContact:(SKPhysicsContact *)contact
 {
-    NSLog(@"CONTACT!!");
+    SKPhysicsBody* body1;
+    SKPhysicsBody* body2;
+
+    if(contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
+    {
+        body1 = contact.bodyA;
+        body2 = contact.bodyB;
+    }
+    else
+    {
+        body1 = contact.bodyB;
+        body2 = contact.bodyA;
+    }
+
+    if((body1.categoryBitMask & WORLD_CATEGORY) != 0
+       && (body2.categoryBitMask & SHIP_CATEGORY) != 0)
+    {
+        NSLog(@"Ship hit world");
+    }
+    else if ((body1.categoryBitMask & SHIP_CATEGORY) != 0
+             && (body2.categoryBitMask & SHIP_CATEGORY) != 0)
+    {
+        NSLog(@"Ship hit ship");
+    }
+    else if ((body1.categoryBitMask & SHIP_CATEGORY) != 0
+             && (body2.categoryBitMask & EXIT_CATEGORY) != 0)
+    {
+        NSLog(@"Ship hit exit");
+    }
+    else
+    {
+        NSLog(@"Unknown contact");
+    }
+}
+
+-(void)didEndContact:(SKPhysicsContact *)contact
+{
+    SKPhysicsBody* body1;
+    SKPhysicsBody* body2;
+
+    if(contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
+    {
+        body1 = contact.bodyA;
+        body2 = contact.bodyB;
+    }
+    else
+    {
+        body1 = contact.bodyB;
+        body2 = contact.bodyA;
+    }
+
+    if((body1.categoryBitMask & WORLD_CATEGORY) != 0
+       && (body2.categoryBitMask & SHIP_CATEGORY) != 0)
+    {
+        NSLog(@"Ship exited world");
+        [body2.node removeFromParent];
+    }
+    else if ((body1.categoryBitMask & SHIP_CATEGORY) != 0
+             && (body2.categoryBitMask & SHIP_CATEGORY) != 0)
+    {
+        NSLog(@"Ship exited ship");
+    }
+    else if ((body1.categoryBitMask & SHIP_CATEGORY) != 0
+             && (body2.categoryBitMask & EXIT_CATEGORY) != 0)
+    {
+        NSLog(@"Ship exited exit");
+    }
+    else
+    {
+        NSLog(@"Unknown exit");
+    }
 }
 
 @end

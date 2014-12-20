@@ -25,8 +25,8 @@
         self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
         self.physicsBody.dynamic = NO;
         self.physicsBody.categoryBitMask = EXIT_CATEGORY;
-        self.physicsBody.contactTestBitMask = PORTAL_CONTACTS;
-        self.physicsBody.collisionBitMask = PORTAL_COLLIDES;
+        self.physicsBody.contactTestBitMask = EXIT_CONTACTS;
+        self.physicsBody.collisionBitMask = EXIT_COLLIDES;
     }
     return self;
 }
