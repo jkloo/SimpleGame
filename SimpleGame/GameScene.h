@@ -7,7 +7,10 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Ship.h"
 
 @interface GameScene : SKScene <SKPhysicsContactDelegate>
+
+-(void)addShip:(Ship*)ship;
 
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Spawner.h"
+#import "GameScene.h"
 #import "BlackHole.h"
 #import "Ship.h"
 #import "RedShip.h"
@@ -82,6 +83,7 @@
         CGVector velocity_vector = CGVectorMake(self.velocity * self.vector.dx, self.velocity * self.vector.dy);
         ship.physicsBody.velocity = velocity_vector;
     }
+    [(GameScene*)self.parent addShip:ship];
 }
 
 -(void)spawnAndFireObjectWithTimer:(NSTimer*)timer

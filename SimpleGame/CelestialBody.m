@@ -45,7 +45,7 @@
 
 -(double)constrainMass:(double)mass
 {
-    return [self constrainValue:mass Between:self.mass_max And:self.mass_min];
+    return [self constrainValue:mass Between:self.mass_min And:self.mass_max];
 }
 
 -(double)constrainValue:(double)value Between:(double)min And:(double)max
@@ -71,7 +71,7 @@
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
     self.physicsBody.dynamic = YES;
     self.physicsBody.affectedByGravity = NO;
-    self.physicsBody.allowsRotation = NO;
+    self.physicsBody.allowsRotation = YES;
     self.physicsBody.mass = [self constrainMass:mass];
     self.physicsBody.friction = 0.0;
     self.physicsBody.restitution = 0.9;

@@ -17,7 +17,20 @@
 
 -(id)init
 {
-    return [super initWithImageNamed:@"BlueShip"];
+    self = [super initWithImageNamed:@"BlueShip"];
+    NSArray* textures = [NSArray arrayWithObjects:
+                            [SKTexture textureWithImageNamed:@"BlueShip0"],
+                            [SKTexture textureWithImageNamed:@"BlueShip1"],
+                            [SKTexture textureWithImageNamed:@"BlueShip2"],
+                            [SKTexture textureWithImageNamed:@"BlueShip3"],
+                            [SKTexture textureWithImageNamed:@"BlueShip2"],
+                            [SKTexture textureWithImageNamed:@"BlueShip3"],
+                            [SKTexture textureWithImageNamed:@"BlueShip2"],
+                            [SKTexture textureWithImageNamed:@"BlueShip1"],
+                            nil];
+    [self runAction: [SKAction repeatActionForever:[SKAction animateWithTextures:textures timePerFrame:0.08]]];
+    self.size = CGSizeMake(380/2, 114/2);
+    return self;
 }
 
 @end

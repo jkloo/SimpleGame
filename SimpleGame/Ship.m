@@ -22,10 +22,12 @@
     if(self)
     {
         self.stationary = NO;
-        self.size = CGSizeMake(self.texture.size.width * 0.75, self.texture.size.height * 0.75);
+        self.size = CGSizeMake(self.texture.size.width, self.texture.size.height);
         self.physicsBody.categoryBitMask = SHIP_CATEGORY;
         self.physicsBody.collisionBitMask = SHIP_COLLIDES;
         self.physicsBody.contactTestBitMask = SHIP_CONTACTS;
+        self.mass_min = 100;
+        self.mass_max = 150;
     }
     return self;
 }
