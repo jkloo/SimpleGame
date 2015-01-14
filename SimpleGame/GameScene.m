@@ -43,7 +43,7 @@
 -(void)didMoveToView:(SKView *)view
 {
     /* Setup your scene here */
-    self.GRAV_CONST = 6.674 * pow(10, -11) * pow(10, 14);
+    self.GRAV_CONST = 6.674 * pow(10, -11) * 3 * pow(10, 14);
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
     self.screen_height = [[UIScreen mainScreen] bounds].size.height;
     self.screen_width = [[UIScreen mainScreen] bounds].size.width;
@@ -53,7 +53,7 @@
     self.holes = [NSMutableArray array];
 
     /* Setup Score label */
-    self.score_label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"Score: %d", self.score]];
+    self.score_label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"Score: %d", (unsigned)self.score]];
     self.score_label.fontSize = 24;
     self.score_label.fontName = @"MenloRg-Regular";
     self.score_label.fontColor = [SKColor whiteColor];
@@ -62,7 +62,7 @@
     [self addChild:self.score_label];
 
     /* Setup Lives counter */
-    self.lives_label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"Lives: %d", self.lives_remaining]];
+    self.lives_label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"Lives: %d", (unsigned)self.lives_remaining]];
     self.lives_label.fontSize = 24;
     self.lives_label.fontName = @"MenloRg-Regular";
     self.lives_label.fontColor = [SKColor whiteColor];
@@ -72,10 +72,12 @@
 
     self.physicsWorld.contactDelegate = self;
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.screen_width, self.screen_height)center:CGPointMake(self.screen_width/2, self.screen_height/2)];
+    self.physicsBody.dynamic = NO;
+    self.physicsBody.affectedByGravity = NO;
     self.physicsBody.categoryBitMask = WORLD_CATEGORY;
     self.physicsBody.contactTestBitMask = WORLD_CONTACTS;
     self.physicsBody.collisionBitMask = WORLD_COLLIDES;
-    
+
     Spawner* sp0 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 1/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
     Spawner* sp1 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 2/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
     Spawner* sp2 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 3/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
@@ -99,6 +101,9 @@
 
     self.exit_portal = [[ExitPortal alloc] initWithLocation:CGPointMake(self.screen_width - 50, self.screen_height / 2)];
     [self addChild:self.exit_portal];
+    SKAction* doPhysics = [SKAction performSelector:@selector(calcPhysics) onTarget:self];
+    SKAction* waitPhysics = [SKAction waitForDuration:0.1];
+    [self runAction:[SKAction repeatActionForever:[SKAction sequence:[NSArray arrayWithObjects:doPhysics, waitPhysics, nil]]]];
 
 }
 
@@ -156,9 +161,10 @@
         [self.placing_ball updateSize:radius];
         [self.placing_ball setupPhysicsBodyWithMass:mass AndRadius:radius];
     }
+}
 
-//    NSLog(@"n ships: %d", [self.ships count]);
-//    NSLog(@"n holes: %d", [self.holes count]);
+-(void)calcPhysics
+{
     for (Ship* ship in self.ships)
     {
         for(BlackHole* hole in self.holes)
@@ -170,14 +176,11 @@
             double delta_x = hole.position.x - ship.position.x;
             double delta_y = hole.position.y - ship.position.y;
             double hypo = sqrt(pow(delta_x, 2) + pow(delta_y, 2));
-//            NSLog(@"hypo: %f", hypo);
             double force_mag = [self calculateGravityForceBetweenBody1:ship AndBody2:hole];
-//            NSLog(@"mag: %f", force_mag);
             CGVector force = CGVectorMake(force_mag * delta_x/hypo, force_mag * delta_y/hypo);
             if(!ship.stationary)
             {
                 [ship.physicsBody applyForce:force];
-                NSLog(@"Applied a force of: %f", force_mag);
             }
         }
     }
@@ -186,9 +189,6 @@
 -(double)calculateGravityForceBetweenBody1:(CelestialBody*)hole_1 AndBody2:(CelestialBody*)hole_2
 {
     double rad_square = pow(hole_1.position.x - hole_2.position.x, 2) + pow(hole_1.position.y - hole_2.position.y, 2);
-    NSLog(@"rad square: %f", rad_square);
-    NSLog(@"body1 mass: %f", hole_1.physicsBody.mass);
-    NSLog(@"body2 mass: %f", hole_2.physicsBody.mass);
     return self.GRAV_CONST * hole_1.physicsBody.mass * hole_2.physicsBody.mass / rad_square;
 }
 
@@ -321,15 +321,15 @@
 -(void)decrementLivesRemaining
 {
     self.lives_remaining--;
-    NSLog(@"Remaining Lives: %d", self.lives_remaining);
-    self.lives_label.text = [NSString stringWithFormat:@"Lives: %d", self.lives_remaining];
+    NSLog(@"Remaining Lives: %d", (unsigned)self.lives_remaining);
+    self.lives_label.text = [NSString stringWithFormat:@"Lives: %d", (unsigned)self.lives_remaining];
 }
 
 -(void)scorePoint
 {
     self.score++;
-    NSLog(@"Score: %d", self.score);
-    self.score_label.text = [NSString stringWithFormat:@"Score: %d", self.score];
+    NSLog(@"Score: %lu", (unsigned long)self.score);
+    self.score_label.text = [NSString stringWithFormat:@"Score: %d", (unsigned)self.score];
 }
 
 -(void)endGame
