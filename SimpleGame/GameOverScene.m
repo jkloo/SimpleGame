@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameOverScene.h"
-//#import "MyScene.h"
+#import "GameScene.h"
 
 @implementation GameOverScene
 -(id)initWithSize:(CGSize)size {
@@ -34,15 +34,37 @@
         scoreLabel.position = CGPointMake(self.size.width/2, self.size.height/3);
         [self addChild:scoreLabel];
 
-        NSString * replayButtonString = @"Replay";
-        SKLabelNode *replayButton = [SKLabelNode labelNodeWithFontNamed:@"MenloRg-Regular"];
-        replayButton.text = replayButtonString;
-        replayButton.fontColor = [SKColor whiteColor];
+        SKSpriteNode * replayButton = [SKSpriteNode spriteNodeWithImageNamed:@"LargeRectButton"];
         replayButton.position = CGPointMake(self.size.width/2, 50);
-        replayButton.name = @"replay";
+        replayButton.size = CGSizeMake(150, 50);
+        replayButton.name = @"replayButton";
         [self addChild:replayButton];
+
+        NSString * replayButtonString = @"Replay";
+        SKLabelNode *replayText = [SKLabelNode labelNodeWithFontNamed:@"MenloRg-Regular"];
+        replayText.text = replayButtonString;
+        replayText.fontColor = [SKColor whiteColor];
+        replayText.position = CGPointMake(self.size.width/2, 50);
+        replayText.name = @"replay";
+        [self addChild:replayText];
 
     }
     return self;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    SKNode *node = [self nodeAtPoint:location];
+
+    if ([node.name isEqualToString:@"replay"]) {
+        SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+
+        GameScene * scene = [GameScene sceneWithSize:self.view.bounds.size];
+        scene.scaleMode = SKSceneScaleModeAspectFill;
+        [self.view presentScene:scene transition: reveal];
+
+    }
 }
 @end
