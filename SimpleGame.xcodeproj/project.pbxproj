@@ -24,6 +24,7 @@
 		60B9A7AB1A3D4CFA00373394 /* BlackHole.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B9A7AA1A3D4CFA00373394 /* BlackHole.m */; };
 		60D1A7391A455644006335D1 /* BlueShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D1A7381A455644006335D1 /* BlueShip.m */; };
 		60D1A73C1A45D913006335D1 /* ExitPortal.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D1A73B1A45D913006335D1 /* ExitPortal.m */; };
+		60E856D91A674D3900E8F229 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E856D81A674D3900E8F229 /* GameOverScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		60D1A7381A455644006335D1 /* BlueShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueShip.m; sourceTree = "<group>"; };
 		60D1A73A1A45D8FD006335D1 /* ExitPortal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExitPortal.h; sourceTree = "<group>"; };
 		60D1A73B1A45D913006335D1 /* ExitPortal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExitPortal.m; sourceTree = "<group>"; };
+		60E856D81A674D3900E8F229 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
+		60E856DA1A674DAC00E8F229 /* GameOverScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				60B9A7801A3C8D0400373394 /* AppDelegate.m */,
 				60B9A7821A3C8D0400373394 /* GameScene.h */,
 				60B9A7831A3C8D0400373394 /* GameScene.m */,
+				60E856DA1A674DAC00E8F229 /* GameOverScene.h */,
+				60E856D81A674D3900E8F229 /* GameOverScene.m */,
 				60B9A7871A3C8D0400373394 /* GameViewController.h */,
 				60B9A7881A3C8D0400373394 /* GameViewController.m */,
 				60B9A78A1A3C8D0400373394 /* Main.storyboard */,
@@ -278,6 +283,7 @@
 				60B9A7841A3C8D0400373394 /* GameScene.m in Sources */,
 				604969FD1A427B43009D7B33 /* CelestialBody.m in Sources */,
 				60B9A77E1A3C8D0400373394 /* main.m in Sources */,
+				60E856D91A674D3900E8F229 /* GameOverScene.m in Sources */,
 				60496A011A43C8B8009D7B33 /* RedShip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

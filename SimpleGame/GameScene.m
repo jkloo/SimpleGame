@@ -14,6 +14,7 @@
 #import "Ship.h"
 #import "RedShip.h"
 #import "BlueShip.h"
+#import "GameOverScene.h"
 
 @interface GameScene ()
 
@@ -78,11 +79,11 @@
     self.physicsBody.contactTestBitMask = WORLD_CONTACTS;
     self.physicsBody.collisionBitMask = WORLD_COLLIDES;
 
-    Spawner* sp0 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 1/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
-    Spawner* sp1 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 2/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
-    Spawner* sp2 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 3/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
-    Spawner* sp3 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 4/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
-    Spawner* sp4 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 5/6) Vector:CGVectorMake(1, 0)AndVelocity:300];
+    Spawner* sp0 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 1/6) Vector:CGVectorMake(1, 0)AndVelocity:500];
+    Spawner* sp1 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 2/6) Vector:CGVectorMake(1, 0)AndVelocity:500];
+    Spawner* sp2 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 3/6) Vector:CGVectorMake(1, 0)AndVelocity:500];
+    Spawner* sp3 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 4/6) Vector:CGVectorMake(1, 0)AndVelocity:500];
+    Spawner* sp4 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 5/6) Vector:CGVectorMake(1, 0)AndVelocity:500];
     
     self.spawners = [NSArray arrayWithObjects:sp0, sp1, sp2, sp3, sp4, nil];
     [self selectActivePortals];
@@ -323,6 +324,10 @@
     self.lives_remaining--;
     NSLog(@"Remaining Lives: %d", (unsigned)self.lives_remaining);
     self.lives_label.text = [NSString stringWithFormat:@"Lives: %d", (unsigned)self.lives_remaining];
+    if(self.lives_remaining == 0)
+    {
+        [self endGame];
+    }
 }
 
 -(void)scorePoint
@@ -335,6 +340,9 @@
 -(void)endGame
 {
     NSLog(@"Game Over");
+    SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+    SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size];
+    [self.view presentScene:gameOverScene transition: reveal];
 }
 
 -(void)addShip:(Ship *)ship

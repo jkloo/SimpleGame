@@ -23,14 +23,14 @@
 
 -(id)initWithMass:(double)mass AndRadius:(double)radius
 {
-    self = [super initWithImageNamed:@"BluePlanet"];
+    self = [super initWithImageNamed:@"Wormhole"];
     if(self)
     {
         self.stationary = YES;
-        self.mass_min = 5;
-        self.mass_max = 1000;
-        self.radius_min = 5;
-        self.radius_max = 50;
+        self.mass_min = 50;
+        self.mass_max = 10000;
+        self.radius_min = 25;
+        self.radius_max = 100;
         
         [self updateSize:[self constrainRadius:radius]];
         [self setupPhysicsBodyWithMass:mass AndRadius:radius];

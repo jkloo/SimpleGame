@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="UiF-lC-WWL">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -18,18 +19,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueShip" translatesAutoresizingMaskIntoConstraints="NO" id="NNL-Hf-gBO">
-                                <rect key="frame" x="361" y="173" width="185" height="100"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BluePortal" translatesAutoresizingMaskIntoConstraints="NO" id="MDB-aG-o2R">
-                                <rect key="frame" x="484" y="158" width="99" height="131"/>
+                                <rect key="frame" x="362" y="173" width="185" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="NNL-Hf-gBO" secondAttribute="height" multiplier="37:20" id="0i2-vo-h1G"/>
+                                </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BluePortal" translatesAutoresizingMaskIntoConstraints="NO" id="bln-9S-gxH">
-                                <rect key="frame" x="30" y="157" width="99" height="131"/>
+                                <rect key="frame" x="77" y="157" width="99" height="131"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSB-38-S90">
-                                <rect key="frame" x="60" y="190" width="371" height="66"/>
+                                <rect key="frame" x="127" y="190" width="237" height="66"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Simple Game">
+                                    <fragment content="Horizon">
                                         <attributes>
                                             <color key="NSColor" red="0.22398296350347602" green="0.4713136737122352" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="56" name="Menlo-Regular"/>
@@ -39,47 +40,70 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BluePortal" translatesAutoresizingMaskIntoConstraints="NO" id="MDB-aG-o2R">
+                                <rect key="frame" x="485" y="157" width="99" height="131"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="unE-Po-AkR">
-                                <rect key="frame" x="252" y="273" width="97" height="52"/>
-                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="200" y="297" width="200" height="100"/>
+                                <color key="backgroundColor" white="0.5" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" label="">
                                     <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                 </accessibility>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="36"/>
+                                <rect key="contentStretch" x="0.10000000000000001" y="0.10000000000000001" width="0.79999999999999982" height="0.89999999999999991"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="9Yz-GT-2eP"/>
+                                    <constraint firstAttribute="width" constant="200" id="JoV-uE-9zI"/>
+                                    <constraint firstAttribute="width" secondItem="unE-Po-AkR" secondAttribute="height" multiplier="3:2" constant="50" id="fS2-fX-UKI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="36"/>
                                 <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                <state key="normal" title="Play">
+                                <state key="normal" title="Play" backgroundImage="LargeRectButton">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.52807370580808088" green="0.52807370580808088" blue="0.52807370580808088" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BV1-FR-VrT" kind="show" id="ac9-Kf-aGH"/>
+                                    <segue destination="BV1-FR-VrT" kind="show" identifier="TitleToGame" id="ac9-Kf-aGH"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="unE-Po-AkR" firstAttribute="top" secondItem="LSB-38-S90" secondAttribute="bottom" constant="17" id="3Ge-dc-Qjb"/>
+                            <constraint firstItem="bln-9S-gxH" firstAttribute="top" secondItem="dPM-2z-Iwx" secondAttribute="bottom" constant="137" id="0wQ-Kk-eUA"/>
+                            <constraint firstItem="LSB-38-S90" firstAttribute="leading" secondItem="bln-9S-gxH" secondAttribute="trailing" constant="-49" id="5kZ-KK-FUG"/>
                             <constraint firstItem="LSB-38-S90" firstAttribute="top" secondItem="dPM-2z-Iwx" secondAttribute="bottom" constant="170" id="FSe-9H-J5l"/>
-                            <constraint firstItem="LSB-38-S90" firstAttribute="centerY" secondItem="NNL-Hf-gBO" secondAttribute="centerY" id="GUY-DB-zoW"/>
                             <constraint firstItem="MDB-aG-o2R" firstAttribute="leading" secondItem="LSB-38-S90" secondAttribute="trailing" constant="53" id="N6m-yY-woc"/>
                             <constraint firstItem="bln-9S-gxH" firstAttribute="leading" secondItem="unH-ox-Gaq" secondAttribute="leading" id="NF3-7d-LX7"/>
+                            <constraint firstItem="NNL-Hf-gBO" firstAttribute="top" secondItem="dPM-2z-Iwx" secondAttribute="bottom" constant="153" id="OZ7-rw-soo"/>
+                            <constraint firstItem="NNL-Hf-gBO" firstAttribute="leading" secondItem="LSB-38-S90" secondAttribute="trailing" constant="-2" id="PEk-6e-tGV"/>
                             <constraint firstItem="bln-9S-gxH" firstAttribute="top" secondItem="dPM-2z-Iwx" secondAttribute="bottom" constant="139" id="TPO-Pd-Fvz"/>
-                            <constraint firstItem="LSB-38-S90" firstAttribute="leading" secondItem="bln-9S-gxH" secondAttribute="trailing" constant="-69" id="VFk-gK-qSN"/>
+                            <constraint firstAttribute="centerX" secondItem="unE-Po-AkR" secondAttribute="centerX" id="UG8-kD-If8"/>
+                            <constraint firstItem="LSB-38-S90" firstAttribute="leading" secondItem="bln-9S-gxH" secondAttribute="trailing" constant="-75" id="VFk-gK-qSN"/>
                             <constraint firstAttribute="centerX" secondItem="LSB-38-S90" secondAttribute="centerX" constant="54.5" id="X1Y-94-CUx"/>
-                            <constraint firstItem="NNL-Hf-gBO" firstAttribute="centerY" secondItem="MDB-aG-o2R" secondAttribute="centerY" id="bk7-yt-9sb"/>
+                            <constraint firstItem="unE-Po-AkR" firstAttribute="top" secondItem="LSB-38-S90" secondAttribute="bottom" constant="41" id="YCI-uZ-dh1"/>
                             <constraint firstItem="LSB-38-S90" firstAttribute="centerY" secondItem="bln-9S-gxH" secondAttribute="centerY" id="f26-KF-Sqt"/>
-                            <constraint firstItem="MDB-aG-o2R" firstAttribute="leading" secondItem="NNL-Hf-gBO" secondAttribute="trailing" constant="-62" id="fOj-qV-jii"/>
+                            <constraint firstItem="MDB-aG-o2R" firstAttribute="leading" secondItem="NNL-Hf-gBO" secondAttribute="trailing" constant="-72" id="fXB-Zt-iD9"/>
                             <constraint firstItem="NNL-Hf-gBO" firstAttribute="top" secondItem="dPM-2z-Iwx" secondAttribute="bottom" constant="139" id="fbb-lp-3li"/>
                             <constraint firstItem="LSB-38-S90" firstAttribute="leading" secondItem="unH-ox-Gaq" secondAttribute="leadingMargin" constant="44" id="heS-Am-Cpn"/>
+                            <constraint firstItem="LSB-38-S90" firstAttribute="top" secondItem="bln-9S-gxH" secondAttribute="bottom" constant="-98" id="jSw-E4-Nab"/>
                             <constraint firstItem="MDB-aG-o2R" firstAttribute="top" secondItem="dPM-2z-Iwx" secondAttribute="bottom" constant="139" id="pPL-c5-y7b"/>
-                            <constraint firstAttribute="centerX" secondItem="unE-Po-AkR" secondAttribute="centerX" id="zIr-Lg-tlH"/>
+                            <constraint firstItem="MDB-aG-o2R" firstAttribute="top" secondItem="dPM-2z-Iwx" secondAttribute="bottom" constant="137" id="rVA-fR-ygt"/>
+                            <constraint firstItem="bln-9S-gxH" firstAttribute="width" secondItem="MDB-aG-o2R" secondAttribute="height" multiplier="99:131" id="uiv-O4-zze"/>
+                            <constraint firstItem="NNL-Hf-gBO" firstAttribute="top" secondItem="MDB-aG-o2R" secondAttribute="bottom" constant="-115" id="xQT-VC-Wee"/>
+                            <constraint firstItem="MDB-aG-o2R" firstAttribute="leading" secondItem="NNL-Hf-gBO" secondAttribute="trailing" constant="-62" id="xSV-v6-UOD"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="NF3-7d-LX7"/>
                                 <exclude reference="TPO-Pd-Fvz"/>
+                                <exclude reference="uiv-O4-zze"/>
+                                <exclude reference="VFk-gK-qSN"/>
+                                <exclude reference="f26-KF-Sqt"/>
                                 <exclude reference="heS-Am-Cpn"/>
+                                <exclude reference="jSw-E4-Nab"/>
                                 <exclude reference="fbb-lp-3li"/>
+                                <exclude reference="xQT-VC-Wee"/>
+                                <exclude reference="N6m-yY-woc"/>
+                                <exclude reference="fXB-Zt-iD9"/>
                                 <exclude reference="pPL-c5-y7b"/>
                             </mask>
                         </variation>
@@ -87,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pa5-vp-WHS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-367" y="136"/>
+            <point key="canvasLocation" x="-895" y="24"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -105,11 +129,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="371" y="136"/>
+            <point key="canvasLocation" x="-107" y="-267"/>
         </scene>
     </scenes>
     <resources>
         <image name="BluePortal" width="99" height="131"/>
         <image name="BlueShip" width="185" height="100"/>
+        <image name="LargeRectButton" width="233" height="142"/>
     </resources>
 </document>
