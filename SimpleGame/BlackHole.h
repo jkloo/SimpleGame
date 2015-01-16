@@ -27,6 +27,8 @@ static unsigned int BLACK_HOLE_MASS_GROWTH_RATE = 300;
 @property double radius;
 @property double radius_min;
 @property double radius_max;
+@property UITouch * touch;
+@property NSTimeInterval beginning;
 
 -(id)init;
 -(id)initWithMass:(double)mass AndRadius:(double)radius;

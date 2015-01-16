@@ -23,7 +23,7 @@
 
 @property double GRAV_CONST;
 @property NSTimeInterval touch_begin;
-@property BlackHole* placing_ball;
+//@property BlackHole* placing_ball;
 @property NSArray* spawners;
 @property ExitPortal* exit_portal;
 
@@ -35,6 +35,9 @@
 
 @property NSMutableArray* ships;
 @property NSMutableArray* holes;
+@property NSMutableArray* placing_holes;
+@property NSMutableArray* placing_timers;
+@property NSMutableArray* active_touches;
 
 @property NSArray* life_markers;
 
@@ -148,54 +151,73 @@
     
     for (UITouch *touch in touches)
     {
-        self.touch_begin = touch.timestamp;
-        self.placing_ball = [[BlackHole alloc] initWithMass:0 AndRadius:0];
-        self.placing_ball.position = [touch locationInNode:self];
-        [self addChild:self.placing_ball];
-        [self.holes addObject:self.placing_ball];
-        break;
+        if (self.placing_holes == nil)
+        {
+            self.placing_holes = [[NSMutableArray alloc] init];
+        }
+
+        NSTimeInterval start = touch.timestamp;
+        BlackHole* hole = [[BlackHole alloc] initWithMass:0 AndRadius:0];
+        hole.touch = touch;
+        hole.beginning = start;
+
+        hole.position = [touch locationInNode:self];
+        [self addChild:hole];
+        [self.holes addObject:hole];
+        [self.placing_holes addObject:hole];
+        [self.placing_timers addObject:[NSNumber numberWithDouble:start]];
+        [self.active_touches addObject:touch];
     }
-}
-
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-    for(UITouch* touch in touches)
-    {
-        NSTimeInterval touch_end = touch.timestamp;
-        double radius = [self durationToRadius:(touch_end - self.touch_begin)];
-        double mass = [self durationToMass:(touch_end - self.touch_begin)];
-
-        CGPoint location = [touch locationInNode:self];
-        
-        [self.placing_ball updateSize:radius];
-        [self.placing_ball setupPhysicsBodyWithMass:mass AndRadius:radius];
-        self.placing_ball.position = location;
-        [self.placing_ball finalize];
-        break;
-    }
-    self.placing_ball = nil;
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    for(UITouch* touch in touches)
+    for (BlackHole* hole in self.placing_holes)
     {
-        self.placing_ball.position = [touch locationInNode:self];
+        if ([touches containsObject:hole.touch])
+        {
+            hole.position = [hole.touch locationInNode:self];
+        }
     }
+}
 
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSMutableArray* finished_holes = [[NSMutableArray alloc] init];
+    for(BlackHole* hole in self.placing_holes)
+    {
+        if ([touches containsObject:hole.touch])
+        {
+            NSTimeInterval end = hole.touch.timestamp;
+
+            double radius = [self durationToRadius:(end - hole.beginning)];
+            double mass = [self durationToMass:(end - hole.beginning)];
+
+            CGPoint location = [hole.touch locationInNode:self];
+
+            [hole updateSize:radius];
+            [hole setupPhysicsBodyWithMass:mass AndRadius:radius];
+            hole.position = location;
+            [hole finalize];
+            [finished_holes addObject:hole];
+        }
+    }
+    for (BlackHole * hole in finished_holes)
+    {
+        hole.touch = nil;
+        [self.placing_holes removeObject:hole];
+    }
 }
 
 -(void)update:(CFTimeInterval)currentTime
 {
-    if(self.placing_ball)
+    for (BlackHole* hole in self.placing_holes)
     {
         NSTimeInterval now = [[NSProcessInfo processInfo] systemUptime];
-        double radius = [self durationToRadius:(now - self.touch_begin)];
-        double mass = [self durationToMass:(now - self.touch_begin)];
-        [self.placing_ball updateSize:radius];
-        [self.placing_ball setupPhysicsBodyWithMass:mass AndRadius:radius];
+        double radius = [self durationToRadius:(now - hole.beginning)];
+        double mass = [self durationToMass:(now - hole.beginning)];
+        [hole updateSize:radius];
+        [hole setupPhysicsBodyWithMass:mass AndRadius:radius];
     }
 
     for (Ship* ship in self.ships)
