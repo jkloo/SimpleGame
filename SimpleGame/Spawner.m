@@ -76,7 +76,7 @@
     {
         return;
     }
-    ship.position = self.position;
+    ship.position = CGPointMake(self.position.x - 50, self.position.y);
     [[self parent] addChild:ship];
     if(ship.physicsBody)
     {

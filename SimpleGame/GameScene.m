@@ -116,11 +116,11 @@
 
 
     /* Set up Spawners */
-    Spawner* sp0 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 1/6) Vector:CGVectorMake(1, 0)AndVelocity:500];
-    Spawner* sp1 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 2/6) Vector:CGVectorMake(1, 0)AndVelocity:500];
-    Spawner* sp2 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 3/6) Vector:CGVectorMake(1, 0)AndVelocity:500];
-    Spawner* sp3 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 4/6) Vector:CGVectorMake(1, 0)AndVelocity:500];
-    Spawner* sp4 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 5/6) Vector:CGVectorMake(1, 0)AndVelocity:500];
+    Spawner* sp0 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 1/6) Vector:CGVectorMake(1, 0)AndVelocity:SPAWNER_INITIAL_VELOCITY];
+    Spawner* sp1 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 2/6) Vector:CGVectorMake(1, 0)AndVelocity:SPAWNER_INITIAL_VELOCITY];
+    Spawner* sp2 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 3/6) Vector:CGVectorMake(1, 0)AndVelocity:SPAWNER_INITIAL_VELOCITY];
+    Spawner* sp3 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 4/6) Vector:CGVectorMake(1, 0)AndVelocity:SPAWNER_INITIAL_VELOCITY];
+    Spawner* sp4 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 5/6) Vector:CGVectorMake(1, 0)AndVelocity:SPAWNER_INITIAL_VELOCITY];
     
     self.spawners = [NSArray arrayWithObjects:sp0, sp1, sp2, sp3, sp4, nil];
     [self selectActivePortals];
@@ -224,6 +224,10 @@
     {
         double angle = atan2(ship.physicsBody.velocity.dy, ship.physicsBody.velocity.dx);
         [ship runAction:[SKAction rotateToAngle:angle duration:0.1]];
+        float vel_mag = sqrtf(powf(ship.physicsBody.velocity.dx, 2) + powf(ship.physicsBody.velocity.dy, 2));
+        float dx = ship.physicsBody.velocity.dx / vel_mag;
+        float dy = ship.physicsBody.velocity.dy / vel_mag;
+        [ship.physicsBody applyForce:CGVectorMake(SHIP_CONSTANT_FORCE * dx, SHIP_CONSTANT_FORCE * dy)];
     }
 }
 

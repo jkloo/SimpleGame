@@ -13,6 +13,8 @@
 #import <SpriteKit/SpriteKit.h>
 #import "CelestialBody.h"
 
+static double SHIP_CONSTANT_FORCE = 25;
+
 @interface Ship : CelestialBody
 
 -(id)initWithImageNamed:(NSString *)name;

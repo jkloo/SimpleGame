@@ -20,6 +20,8 @@ enum PORTAL_TYPE
     BLUE
 };
 
+static double SPAWNER_INITIAL_VELOCITY = 300;
+
 @interface Spawner : CelestialBody
 
 @property CGVector vector;
