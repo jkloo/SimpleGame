@@ -13,6 +13,7 @@
 
 @interface RedShip : Ship
 -(id)init;
+-(void)destroy;
 @end
 
 #endif

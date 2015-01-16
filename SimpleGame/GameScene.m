@@ -265,8 +265,10 @@
              && (body2.categoryBitMask & SHIP_CATEGORY) != 0)
     {
         NSLog(@"Ship hit ship");
-        [body1.node removeFromParent];
-        [body2.node removeFromParent];
+//        [body1.node removeFromParent];
+//        [body2.node removeFromParent];
+        [(Ship*)body1.node destroy];
+        [(Ship*)body2.node destroy];
         [self decrementLivesRemaining];
     }
     else if ((body1.categoryBitMask & SHIP_CATEGORY) != 0

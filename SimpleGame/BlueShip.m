@@ -33,4 +33,19 @@
     return self;
 }
 
+-(void)destroy
+{
+    NSArray* textures = [NSArray arrayWithObjects:
+                         [SKTexture textureWithImageNamed:@"BlueCrash0"],
+                         [SKTexture textureWithImageNamed:@"BlueCrash1"],
+                         [SKTexture textureWithImageNamed:@"BlueCrash2"],
+                         [SKTexture textureWithImageNamed:@"BlueCrash3"],
+                         [SKTexture textureWithImageNamed:@"BlueCrash3"],
+                         nil];
+    SKAction * animate = [SKAction animateWithTextures:textures timePerFrame:0.08];
+    SKAction * remove = [SKAction performSelector:@selector(removeFromParent) onTarget:self];
+    [self runAction: [SKAction sequence:[NSArray arrayWithObjects:animate, remove, nil]]];
+
+}
+
 @end

@@ -76,4 +76,9 @@
     self.physicsBody.friction = 0.0;
     self.physicsBody.restitution = 0.9;
 }
+
+-(void)destroy
+{
+    [self removeFromParent];
+}
 @end

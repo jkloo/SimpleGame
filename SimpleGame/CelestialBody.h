@@ -25,7 +25,7 @@
 -(void)setupPhysicsBodyWithMass:(float)mass;
 -(double)constrainMass:(double)mass;
 -(double)constrainValue:(double)value Between:(double)min And:(double)max;
-
+-(void)destroy;
 @end
 
 #endif
