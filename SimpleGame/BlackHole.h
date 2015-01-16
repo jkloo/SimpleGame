@@ -13,9 +13,9 @@
 #import <SpriteKit/SpriteKit.h>
 #import "CelestialBody.h"
 
-static unsigned int BLACK_HOLE_RADIUS_MIN = 50;
-static unsigned int BLACK_HOLE_RADIUS_MAX = 100;
-static unsigned int BLACK_HOLE_RADIUS_GROWTH_RATE = 50;
+static unsigned int BLACK_HOLE_RADIUS_MIN = 75;
+static unsigned int BLACK_HOLE_RADIUS_MAX = 175;
+static unsigned int BLACK_HOLE_RADIUS_GROWTH_RATE = 100;
 
 static unsigned int BLACK_HOLE_MASS_MIN = 50;
 static unsigned int BLACK_HOLE_MASS_MAX = 350;
