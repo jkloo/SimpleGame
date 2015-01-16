@@ -65,7 +65,7 @@
 
 -(void)finalize
 {
-    self.shrink_interval = 0.1;
+    self.shrink_interval = 0.03;
     int n = (self.radius - self.radius_min) / BLACK_HOLE_RADIUS_GROWTH_RATE * 1/self.shrink_interval;
     SKAction * delay = [SKAction waitForDuration:1];
     SKAction * interval = [SKAction waitForDuration:self.shrink_interval];
