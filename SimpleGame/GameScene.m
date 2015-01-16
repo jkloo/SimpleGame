@@ -19,7 +19,6 @@
 @interface GameScene ()
 
 @property SKLabelNode* score_label;
-@property SKLabelNode* lives_label;
 
 @property double GRAV_CONST;
 @property NSTimeInterval touch_begin;
@@ -43,7 +42,6 @@
 
 @end
 
-
 @implementation GameScene
 
 -(void)didMoveToView:(SKView *)view
@@ -59,48 +57,44 @@
     self.holes = [NSMutableArray array];
 
     /* Setup Score label */
+    SKSpriteNode * score_background = [SKSpriteNode spriteNodeWithImageNamed:@"LargeRectButton"];
+    score_background.position = CGPointMake(self.size.width/2, self.screen_height - 30);
+    score_background.size = CGSizeMake(225, 100);
+    [self addChild:score_background];
+
     self.score_label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"Score: %d", (unsigned)self.score]];
-    self.score_label.fontSize = 24;
-    self.score_label.fontName = @"MenloRg-Regular";
-    self.score_label.fontColor = [SKColor whiteColor];
+    self.score_label.fontSize = 36;
+    self.score_label.fontName = @"Menlo";
+    self.score_label.fontColor = [SKColor blackColor];
     self.score_label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
     self.score_label.position = CGPointMake(self.size.width/2, self.screen_height - 50);
     [self addChild:self.score_label];
-
-    /* Setup Lives counter */
-    self.lives_label = [SKLabelNode labelNodeWithText:[NSString stringWithFormat:@"Lives: %d", (unsigned)self.lives_remaining]];
-    self.lives_label.fontSize = 24;
-    self.lives_label.fontName = @"MenloRg-Regular";
-    self.lives_label.fontColor = [SKColor whiteColor];
-    self.lives_label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
-    self.lives_label.position = CGPointMake(self.size.width/2, self.screen_height - 100);
-    [self addChild:self.lives_label];
 
     /* Setup life markers */
     int marker_size = 75;
     SKSpriteNode * life0 = [[SKSpriteNode alloc] initWithImageNamed:@"GrayShip"];
     life0.size = CGSizeMake(marker_size, life0.texture.size.height * marker_size / life0.texture.size.width);
-    life0.position = CGPointMake(self.screen_width - 375, self.screen_height - 50);
+    life0.position = CGPointMake(self.screen_width - 350, self.screen_height - 30);
     [self addChild:life0];
 
     SKSpriteNode * life1 = [[SKSpriteNode alloc] initWithImageNamed:@"GrayShip"];
     life1.size = CGSizeMake(marker_size, life1.texture.size.height * marker_size / life1.texture.size.width);
-    life1.position = CGPointMake(self.screen_width - 300, self.screen_height - 50);
+    life1.position = CGPointMake(self.screen_width - 275, self.screen_height - 30);
     [self addChild:life1];
 
     SKSpriteNode * life2 = [[SKSpriteNode alloc] initWithImageNamed:@"GrayShip"];
     life2.size = CGSizeMake(marker_size, life2.texture.size.height * marker_size / life2.texture.size.width);
-    life2.position = CGPointMake(self.screen_width - 225, self.screen_height - 50);
+    life2.position = CGPointMake(self.screen_width - 200, self.screen_height - 30);
     [self addChild:life2];
 
     SKSpriteNode * life3 = [[SKSpriteNode alloc] initWithImageNamed:@"GrayShip"];
     life3.size = CGSizeMake(marker_size, life3.texture.size.height * marker_size / life3.texture.size.width);
-    life3.position = CGPointMake(self.screen_width - 150, self.screen_height - 50);
+    life3.position = CGPointMake(self.screen_width - 125, self.screen_height - 30);
     [self addChild:life3];
 
     SKSpriteNode * life4 = [[SKSpriteNode alloc] initWithImageNamed:@"GrayShip"];
     life4.size = CGSizeMake(marker_size, life4.texture.size.height * marker_size / life4.texture.size.width);
-    life4.position = CGPointMake(self.screen_width - 75, self.screen_height - 50);
+    life4.position = CGPointMake(self.screen_width - 50, self.screen_height - 30);
     [self addChild:life4];
 
     self.life_markers = [NSArray arrayWithObjects:life4, life3, life2, life1, life0, nil];
@@ -401,7 +395,6 @@
     x.position = indicator.position;
     [self addChild:x];
     NSLog(@"Remaining Lives: %d", (unsigned)self.lives_remaining);
-    self.lives_label.text = [NSString stringWithFormat:@"Lives: %d", (unsigned)self.lives_remaining];
     if(self.lives_remaining == 0)
     {
         [self endGame];
@@ -419,7 +412,7 @@
 {
     NSLog(@"Game Over");
     SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
-    SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size];
+    SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size AndScore:self.score];
     [self.view presentScene:gameOverScene transition: reveal];
 }
 

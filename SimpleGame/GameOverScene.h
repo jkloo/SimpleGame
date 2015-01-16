@@ -13,6 +13,8 @@
 
 @interface GameOverScene : SKScene
 
+-(id)initWithSize:(CGSize)size AndScore:(unsigned int)score;
+
 @end
 
 #endif
