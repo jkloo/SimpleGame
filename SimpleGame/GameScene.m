@@ -44,7 +44,7 @@
 -(void)didMoveToView:(SKView *)view
 {
     /* Setup your scene here */
-    self.GRAV_CONST = 6.674 * pow(10, -11) * 3 * pow(10, 14);
+    self.GRAV_CONST = 6.674 * pow(10, -11) * pow(10, 15);
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
     self.screen_height = [[UIScreen mainScreen] bounds].size.height;
     self.screen_width = [[UIScreen mainScreen] bounds].size.width;
@@ -138,6 +138,7 @@
         [self.placing_ball updateSize:radius];
         [self.placing_ball setupPhysicsBodyWithMass:mass AndRadius:radius];
         self.placing_ball.position = location;
+        [self.placing_ball finalize];
         break;
     }
     self.placing_ball = nil;
@@ -162,6 +163,12 @@
         [self.placing_ball updateSize:radius];
         [self.placing_ball setupPhysicsBodyWithMass:mass AndRadius:radius];
     }
+
+    for (Ship* ship in self.ships)
+    {
+        double angle = atan2(ship.physicsBody.velocity.dy, ship.physicsBody.velocity.dx);
+        [ship runAction:[SKAction rotateToAngle:angle duration:0.1]];
+    }
 }
 
 -(void)calcPhysics
@@ -178,6 +185,10 @@
             double delta_y = hole.position.y - ship.position.y;
             double hypo = sqrt(pow(delta_x, 2) + pow(delta_y, 2));
             double force_mag = [self calculateGravityForceBetweenBody1:ship AndBody2:hole];
+            if(force_mag > MAX_FORCE)
+            {
+                force_mag = MAX_FORCE;
+            }
             CGVector force = CGVectorMake(force_mag * delta_x/hypo, force_mag * delta_y/hypo);
             if(!ship.stationary)
             {
@@ -195,12 +206,12 @@
 
 -(double)durationToRadius:(NSTimeInterval)duration
 {
-    return (double)(30 * duration);
+    return (double)(BLACK_HOLE_RADIUS_MIN + BLACK_HOLE_RADIUS_GROWTH_RATE * duration);
 }
 
 -(double)durationToMass:(NSTimeInterval)duration
 {
-    return (double)(30 * duration);
+    return (double)(BLACK_HOLE_MASS_MIN + BLACK_HOLE_MASS_GROWTH_RATE * duration);
 }
 
 -(void)selectActivePortals
@@ -254,6 +265,8 @@
              && (body2.categoryBitMask & SHIP_CATEGORY) != 0)
     {
         NSLog(@"Ship hit ship");
+        [body1.node removeFromParent];
+        [body2.node removeFromParent];
         [self decrementLivesRemaining];
     }
     else if ((body1.categoryBitMask & SHIP_CATEGORY) != 0

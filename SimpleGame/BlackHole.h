@@ -13,6 +13,15 @@
 #import <SpriteKit/SpriteKit.h>
 #import "CelestialBody.h"
 
+static unsigned int BLACK_HOLE_RADIUS_MIN = 50;
+static unsigned int BLACK_HOLE_RADIUS_MAX = 100;
+static unsigned int BLACK_HOLE_RADIUS_GROWTH_RATE = 50;
+
+static unsigned int BLACK_HOLE_MASS_MIN = 50;
+static unsigned int BLACK_HOLE_MASS_MAX = 350;
+static unsigned int BLACK_HOLE_MASS_GROWTH_RATE = 300;
+
+
 @interface BlackHole : CelestialBody
 
 @property double radius;
@@ -24,6 +33,7 @@
 -(void)updateSize:(double)radius;
 -(void)setupPhysicsBodyWithMass:(double)mass AndRadius:(double)radius;
 -(double)constrainRadius:(double)radius;
+-(void)finalize;
 
 @end
 

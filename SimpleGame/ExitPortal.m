@@ -22,7 +22,7 @@
     if(self)
     {
         self.position = location;
-        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
+        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.texture.size.width/3, self.texture.size.height*0.75)center:CGPointMake(self.texture.size.width/3, 0)];
         self.physicsBody.dynamic = NO;
         self.physicsBody.categoryBitMask = EXIT_CATEGORY;
         self.physicsBody.contactTestBitMask = EXIT_CONTACTS;

@@ -68,7 +68,7 @@
 
 -(void)setupPhysicsBodyWithMass:(float)mass
 {
-    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
+    self.physicsBody = [SKPhysicsBody bodyWithTexture:self.texture size:self.size];
     self.physicsBody.dynamic = YES;
     self.physicsBody.affectedByGravity = NO;
     self.physicsBody.allowsRotation = YES;

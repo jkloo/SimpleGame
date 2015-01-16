@@ -30,7 +30,7 @@
         self.position = location;
         self.vector = vector;
         self.velocity = velocity;
-        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
+        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.texture.size.width/2, self.texture.size.height)];
         self.physicsBody.dynamic = NO;
         self.physicsBody.categoryBitMask = PORTAL_CATEGORY;
         self.physicsBody.contactTestBitMask = PORTAL_CONTACTS;

@@ -11,6 +11,8 @@
 
 @interface BlackHole()
 
+@property double shrink_interval;
+
 @end
 
 @implementation BlackHole : CelestialBody
@@ -23,14 +25,14 @@
 
 -(id)initWithMass:(double)mass AndRadius:(double)radius
 {
-    self = [super initWithImageNamed:@"Wormhole"];
+    self = [super initWithImageNamed:@"WormHole"];
     if(self)
     {
         self.stationary = YES;
-        self.mass_min = 50;
-        self.mass_max = 10000;
-        self.radius_min = 25;
-        self.radius_max = 100;
+        self.mass_min = BLACK_HOLE_MASS_MIN;
+        self.mass_max = BLACK_HOLE_MASS_MAX;
+        self.radius_min = BLACK_HOLE_RADIUS_MIN;
+        self.radius_max = BLACK_HOLE_RADIUS_MAX;
         
         [self updateSize:[self constrainRadius:radius]];
         [self setupPhysicsBodyWithMass:mass AndRadius:radius];
@@ -60,4 +62,33 @@
     self.physicsBody.collisionBitMask = BLACKHOLE_COLLIDES;
     self.physicsBody.contactTestBitMask = BLACKHOLE_CONTACTS;
 }
+
+-(void)finalize
+{
+    self.shrink_interval = 0.1;
+    int n = (self.radius - self.radius_min) / BLACK_HOLE_RADIUS_GROWTH_RATE * 1/self.shrink_interval;
+    SKAction * delay = [SKAction waitForDuration:1];
+    SKAction * interval = [SKAction waitForDuration:self.shrink_interval];
+    SKAction * shrink = [SKAction performSelector:@selector(shrink) onTarget:self];
+    SKAction * shrink_to_zero = [SKAction repeatAction:[SKAction sequence:[NSArray arrayWithObjects:interval, shrink, nil]] count:n];
+    SKAction * vanish = [SKAction performSelector:@selector(vanish) onTarget:self];
+    SKAction * all = [SKAction sequence:[NSArray arrayWithObjects:delay, shrink_to_zero, vanish, nil]];
+    [self.parent runAction:all];
+}
+
+-(void)shrink
+{
+    double new_radius = self.radius - BLACK_HOLE_RADIUS_GROWTH_RATE * self.shrink_interval;
+    double new_mass = self.physicsBody.mass - BLACK_HOLE_MASS_GROWTH_RATE * self.shrink_interval;
+    [self updateSize:new_radius];
+    self.physicsBody.mass = new_mass;
+
+}
+
+-(void)vanish
+{
+    self.physicsBody.mass = 0;
+    [self removeFromParent];
+}
+
 @end
