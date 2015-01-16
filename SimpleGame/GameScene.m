@@ -36,6 +36,8 @@
 @property NSMutableArray* ships;
 @property NSMutableArray* holes;
 
+@property NSArray* life_markers;
+
 @end
 
 
@@ -71,6 +73,36 @@
     self.lives_label.position = CGPointMake(self.size.width/2, self.screen_height - 100);
     [self addChild:self.lives_label];
 
+    /* Setup life markers */
+    int marker_size = 75;
+    SKSpriteNode * life0 = [[SKSpriteNode alloc] initWithImageNamed:@"GrayShip"];
+    life0.size = CGSizeMake(marker_size, life0.texture.size.height * marker_size / life0.texture.size.width);
+    life0.position = CGPointMake(self.screen_width - 375, self.screen_height - 50);
+    [self addChild:life0];
+
+    SKSpriteNode * life1 = [[SKSpriteNode alloc] initWithImageNamed:@"GrayShip"];
+    life1.size = CGSizeMake(marker_size, life1.texture.size.height * marker_size / life1.texture.size.width);
+    life1.position = CGPointMake(self.screen_width - 300, self.screen_height - 50);
+    [self addChild:life1];
+
+    SKSpriteNode * life2 = [[SKSpriteNode alloc] initWithImageNamed:@"GrayShip"];
+    life2.size = CGSizeMake(marker_size, life2.texture.size.height * marker_size / life2.texture.size.width);
+    life2.position = CGPointMake(self.screen_width - 225, self.screen_height - 50);
+    [self addChild:life2];
+
+    SKSpriteNode * life3 = [[SKSpriteNode alloc] initWithImageNamed:@"GrayShip"];
+    life3.size = CGSizeMake(marker_size, life3.texture.size.height * marker_size / life3.texture.size.width);
+    life3.position = CGPointMake(self.screen_width - 150, self.screen_height - 50);
+    [self addChild:life3];
+
+    SKSpriteNode * life4 = [[SKSpriteNode alloc] initWithImageNamed:@"GrayShip"];
+    life4.size = CGSizeMake(marker_size, life4.texture.size.height * marker_size / life4.texture.size.width);
+    life4.position = CGPointMake(self.screen_width - 75, self.screen_height - 50);
+    [self addChild:life4];
+
+    self.life_markers = [NSArray arrayWithObjects:life4, life3, life2, life1, life0, nil];
+
+    /* Set up physics world */
     self.physicsWorld.contactDelegate = self;
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.screen_width, self.screen_height)center:CGPointMake(self.screen_width/2, self.screen_height/2)];
     self.physicsBody.dynamic = NO;
@@ -79,6 +111,8 @@
     self.physicsBody.contactTestBitMask = WORLD_CONTACTS;
     self.physicsBody.collisionBitMask = WORLD_COLLIDES;
 
+
+    /* Set up Spawners */
     Spawner* sp0 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 1/6) Vector:CGVectorMake(1, 0)AndVelocity:500];
     Spawner* sp1 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 2/6) Vector:CGVectorMake(1, 0)AndVelocity:500];
     Spawner* sp2 = [[Spawner alloc] initWithLocation:CGPointMake(50, self.screen_height * 3/6) Vector:CGVectorMake(1, 0)AndVelocity:500];
@@ -265,8 +299,6 @@
              && (body2.categoryBitMask & SHIP_CATEGORY) != 0)
     {
         NSLog(@"Ship hit ship");
-//        [body1.node removeFromParent];
-//        [body2.node removeFromParent];
         [(Ship*)body1.node destroy];
         [(Ship*)body2.node destroy];
         [self decrementLivesRemaining];
@@ -337,6 +369,11 @@
 -(void)decrementLivesRemaining
 {
     self.lives_remaining--;
+    SKSpriteNode * x = [[SKSpriteNode alloc] initWithImageNamed:@"RedX"];
+    x.size = CGSizeMake(75, 75);
+    SKSpriteNode* indicator = [self.life_markers objectAtIndex:self.lives_remaining];
+    x.position = indicator.position;
+    [self addChild:x];
     NSLog(@"Remaining Lives: %d", (unsigned)self.lives_remaining);
     self.lives_label.text = [NSString stringWithFormat:@"Lives: %d", (unsigned)self.lives_remaining];
     if(self.lives_remaining == 0)
