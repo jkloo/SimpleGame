@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		313439661AA52CDD00E0A2A8 /* RockSpawner.m in Sources */ = {isa = PBXBuildFile; fileRef = 313439651AA52CDD00E0A2A8 /* RockSpawner.m */; };
+		313439691AA530AE00E0A2A8 /* Rock.m in Sources */ = {isa = PBXBuildFile; fileRef = 313439681AA530AE00E0A2A8 /* Rock.m */; };
 		604969F91A414239009D7B33 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60B9A77C1A3C8D0400373394 /* Info.plist */; };
 		604969FD1A427B43009D7B33 /* CelestialBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 604969FC1A427B43009D7B33 /* CelestialBody.m */; };
 		60496A011A43C8B8009D7B33 /* RedShip.m in Sources */ = {isa = PBXBuildFile; fileRef = 60496A001A43C8B8009D7B33 /* RedShip.m */; };
@@ -38,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		313439641AA52CDD00E0A2A8 /* RockSpawner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RockSpawner.h; sourceTree = "<group>"; };
+		313439651AA52CDD00E0A2A8 /* RockSpawner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RockSpawner.m; sourceTree = "<group>"; };
+		313439671AA530AE00E0A2A8 /* Rock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rock.h; sourceTree = "<group>"; };
+		313439681AA530AE00E0A2A8 /* Rock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rock.m; sourceTree = "<group>"; };
 		604969FC1A427B43009D7B33 /* CelestialBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CelestialBody.m; sourceTree = "<group>"; };
 		604969FE1A427B4E009D7B33 /* CelestialBody.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CelestialBody.h; sourceTree = "<group>"; };
 		604969FF1A43C8A6009D7B33 /* RedShip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedShip.h; sourceTree = "<group>"; };
@@ -112,6 +118,8 @@
 		60B9A77A1A3C8D0400373394 /* SimpleGame */ = {
 			isa = PBXGroup;
 			children = (
+				313439641AA52CDD00E0A2A8 /* RockSpawner.h */,
+				313439651AA52CDD00E0A2A8 /* RockSpawner.m */,
 				60D1A7361A454B37006335D1 /* Collisions.h */,
 				60B9A7A91A3CA24000373394 /* Ship.h */,
 				60B9A7A61A3CA21500373394 /* Ship.m */,
@@ -125,6 +133,8 @@
 				604969FC1A427B43009D7B33 /* CelestialBody.m */,
 				609092EF1A3F9C29002954D4 /* Spawner.h */,
 				609092ED1A3F9C0B002954D4 /* Spawner.m */,
+				313439671AA530AE00E0A2A8 /* Rock.h */,
+				313439681AA530AE00E0A2A8 /* Rock.m */,
 				60D1A73A1A45D8FD006335D1 /* ExitPortal.h */,
 				60D1A73B1A45D913006335D1 /* ExitPortal.m */,
 				60B9A77F1A3C8D0400373394 /* AppDelegate.h */,
@@ -279,10 +289,12 @@
 				609092EE1A3F9C0B002954D4 /* Spawner.m in Sources */,
 				60B9A7A71A3CA21500373394 /* Ship.m in Sources */,
 				60B9A7891A3C8D0400373394 /* GameViewController.m in Sources */,
+				313439691AA530AE00E0A2A8 /* Rock.m in Sources */,
 				60B9A7811A3C8D0400373394 /* AppDelegate.m in Sources */,
 				60B9A7841A3C8D0400373394 /* GameScene.m in Sources */,
 				604969FD1A427B43009D7B33 /* CelestialBody.m in Sources */,
 				60B9A77E1A3C8D0400373394 /* main.m in Sources */,
+				313439661AA52CDD00E0A2A8 /* RockSpawner.m in Sources */,
 				60E856D91A674D3900E8F229 /* GameOverScene.m in Sources */,
 				60496A011A43C8B8009D7B33 /* RedShip.m in Sources */,
 			);

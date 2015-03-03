@@ -137,6 +137,25 @@
     SKAction* waitPhysics = [SKAction waitForDuration:0.1];
     [self runAction:[SKAction repeatActionForever:[SKAction sequence:[NSArray arrayWithObjects:doPhysics, waitPhysics, nil]]]];
 
+    for (int j = 0; j < 6; j++)
+    {
+        Spawner* rockSpawner0 = [[Spawner alloc] initWithLocation:CGPointMake(self.screen_width * (j+1)/6,  -100) Vector:CGVectorMake(0, 1) AndVelocity:SPAWNER_INITIAL_VELOCITY];
+        [rockSpawner0 changePortalType:ROCK];
+
+        [self addChild:rockSpawner0];
+        SKAction* fire = [SKAction performSelector:@selector(spawnAndFireObject) onTarget:rockSpawner0];
+        [self runAction:[SKAction repeatActionForever:[SKAction sequence:[NSArray arrayWithObjects:waitForSelect, fire, waitForFire, nil]]]];
+    }
+
+    for (int j = 0; j < 6; j++)
+    {
+        Spawner* rockSpawner0 = [[Spawner alloc] initWithLocation:CGPointMake(self.screen_width * (j+1)/6, self.screen_height + 100) Vector:CGVectorMake(0, -1) AndVelocity:SPAWNER_INITIAL_VELOCITY];
+        [rockSpawner0 changePortalType:ROCK];
+
+        [self addChild:rockSpawner0];
+        SKAction* fire = [SKAction performSelector:@selector(spawnAndFireObject) onTarget:rockSpawner0];
+        [self runAction:[SKAction repeatActionForever:[SKAction sequence:[NSArray arrayWithObjects:waitForSelect, fire, waitForFire, nil]]]];
+    }
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

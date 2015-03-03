@@ -13,6 +13,7 @@
 #import "Ship.h"
 #import "RedShip.h"
 #import "BlueShip.h"
+#import "Rock.h"
 #import "Collisions.h"
 
 @interface Spawner()
@@ -54,6 +55,7 @@
         case RED:
             self.texture = [SKTexture textureWithImageNamed:@"RedPortal"];
             break;
+        case ROCK:
         case GRAY:
         default:
             self.texture = [SKTexture textureWithImageNamed:@"GrayPortal"];
@@ -72,6 +74,11 @@
     {
         ship = [[RedShip alloc] init];
     }
+    else if (self.portal_type == ROCK)
+    {
+        ship = [[Rock alloc] init];
+        NSLog(@"Fire a rock please!");
+    }
     else
     {
         return;
@@ -83,7 +90,10 @@
         CGVector velocity_vector = CGVectorMake(self.velocity * self.vector.dx, self.velocity * self.vector.dy);
         ship.physicsBody.velocity = velocity_vector;
     }
-    [(GameScene*)self.parent addShip:ship];
+    if ((self.portal_type == BLUE) || (self.portal_type == RED))
+    {
+        [(GameScene*)self.parent addShip:ship];
+    }
 }
 
 -(void)spawnAndFireObjectWithTimer:(NSTimer*)timer

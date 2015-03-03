@@ -17,7 +17,8 @@ enum PORTAL_TYPE
 {
     GRAY,
     RED,
-    BLUE
+    BLUE,
+    ROCK
 };
 
 static double SPAWNER_INITIAL_VELOCITY = 300;
