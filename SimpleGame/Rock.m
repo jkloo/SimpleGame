@@ -11,7 +11,7 @@
 
 @implementation Rock
 
--(id)init
+- (id)init
 {
     self = [super initWithImageNamed:@"Rock"];
     self.diameter = arc4random() % 20 + 10;
@@ -22,9 +22,6 @@
     return self;
 }
 
--(void)destroy
-{
-    [self removeFromParent];
-}
+- (void)destroy { [self removeFromParent]; }
 
 @end

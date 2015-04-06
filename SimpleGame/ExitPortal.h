@@ -16,7 +16,7 @@
 
 @interface ExitPortal : CelestialBody
 
--(id)initWithLocation:(CGPoint)location;
+- (id)initWithLocation:(CGPoint)location;
 
 @end
 

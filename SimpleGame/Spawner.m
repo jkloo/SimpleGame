@@ -16,22 +16,22 @@
 #import "Rock.h"
 #import "Collisions.h"
 
-@interface Spawner()
+@interface Spawner ()
 
 @end
 
 @implementation Spawner : CelestialBody
 
--(id)initWithLocation:(CGPoint)location Vector:(CGVector)vector AndVelocity:(float)velocity
+- (id)initWithLocation:(CGPoint)location Vector:(CGVector)vector AndVelocity:(float)velocity
 {
     self = [super initWithImageNamed:@"GrayPortal"];
-    if(self)
-    {
+    if (self) {
         self.portal_type = GRAY;
         self.position = location;
         self.vector = vector;
         self.velocity = velocity;
-        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.texture.size.width/2, self.texture.size.height)];
+        self.physicsBody =
+            [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.texture.size.width / 2, self.texture.size.height)];
         self.physicsBody.dynamic = NO;
         self.physicsBody.categoryBitMask = PORTAL_CATEGORY;
         self.physicsBody.contactTestBitMask = PORTAL_CONTACTS;
@@ -40,65 +40,51 @@
     return self;
 }
 
--(void)changePortalType:(enum PORTAL_TYPE)new_type
+- (void)changePortalType:(enum PORTAL_TYPE)new_type
 {
-    if(new_type == self.portal_type)
-        
-    {
+    if (new_type == self.portal_type) {
         return;
     }
     self.portal_type = new_type;
     switch (self.portal_type) {
-        case BLUE:
-            self.texture = [SKTexture textureWithImageNamed:@"BluePortal"];
-            break;
-        case RED:
-            self.texture = [SKTexture textureWithImageNamed:@"RedPortal"];
-            break;
-        case ROCK:
-        case GRAY:
-        default:
-            self.texture = [SKTexture textureWithImageNamed:@"GrayPortal"];
-            break;
+    case BLUE:
+        self.texture = [SKTexture textureWithImageNamed:@"BluePortal"];
+        break;
+    case RED:
+        self.texture = [SKTexture textureWithImageNamed:@"RedPortal"];
+        break;
+    case ROCK:
+    case GRAY:
+    default:
+        self.texture = [SKTexture textureWithImageNamed:@"GrayPortal"];
+        break;
     }
 }
 
--(void)spawnAndFireObject
+- (void)spawnAndFireObject
 {
-    Ship* ship;
-    if(self.portal_type == BLUE)
-    {
+    Ship *ship;
+    if (self.portal_type == BLUE) {
         ship = [[BlueShip alloc] init];
-    }
-    else if (self.portal_type == RED)
-    {
+    } else if (self.portal_type == RED) {
         ship = [[RedShip alloc] init];
-    }
-    else if (self.portal_type == ROCK)
-    {
+    } else if (self.portal_type == ROCK) {
         ship = [[Rock alloc] init];
         NSLog(@"Fire a rock please!");
-    }
-    else
-    {
+    } else {
         return;
     }
     ship.position = CGPointMake(self.position.x - 50, self.position.y);
     [[self parent] addChild:ship];
-    if(ship.physicsBody)
-    {
+    if (ship.physicsBody) {
         CGVector velocity_vector = CGVectorMake(self.velocity * self.vector.dx, self.velocity * self.vector.dy);
         ship.physicsBody.velocity = velocity_vector;
     }
-    if ((self.portal_type == BLUE) || (self.portal_type == RED))
-    {
-        [(GameScene*)self.parent addShip:ship];
+    if ((self.portal_type == BLUE) || (self.portal_type == RED)) {
+        [(GameScene *)self.parent addShip:ship];
     }
 }
 
--(void)spawnAndFireObjectWithTimer:(NSTimer*)timer
-{
-    [self spawnAndFireObject];
-}
+- (void)spawnAndFireObjectWithTimer:(NSTimer *)timer { [self spawnAndFireObject]; }
 
 @end

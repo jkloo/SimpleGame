@@ -13,13 +13,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "CelestialBody.h"
 
-enum PORTAL_TYPE
-{
-    GRAY,
-    RED,
-    BLUE,
-    ROCK
-};
+enum PORTAL_TYPE { GRAY, RED, BLUE, ROCK };
 
 static double SPAWNER_INITIAL_VELOCITY = 300;
 
@@ -29,10 +23,10 @@ static double SPAWNER_INITIAL_VELOCITY = 300;
 @property float velocity;
 @property enum PORTAL_TYPE portal_type;
 
--(id)initWithLocation:(CGPoint)location Vector:(CGVector)vector AndVelocity:(float)velocity;
--(void)spawnAndFireObject;
--(void)spawnAndFireObjectWithTimer:(NSTimer*)timer;
--(void)changePortalType:(enum PORTAL_TYPE)new_type;
+- (id)initWithLocation:(CGPoint)location Vector:(CGVector)vector AndVelocity:(float)velocity;
+- (void)spawnAndFireObject;
+- (void)spawnAndFireObjectWithTimer:(NSTimer *)timer;
+- (void)changePortalType:(enum PORTAL_TYPE)new_type;
 
 @end
 

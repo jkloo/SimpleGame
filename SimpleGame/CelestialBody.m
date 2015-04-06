@@ -8,23 +8,22 @@
 
 #import "CelestialBody.h"
 
-@interface CelestialBody()
+@interface CelestialBody ()
 
 @end
 
 @implementation CelestialBody : SKSpriteNode
 
--(id)init
+- (id)init
 {
     self = [[CelestialBody alloc] initWithImageNamed:@"BluePlanet"];
     return self;
 }
 
--(id)initWithImageNamed:(NSString *)name
+- (id)initWithImageNamed:(NSString *)name
 {
     self = [super initWithImageNamed:name];
-    if(self)
-    {
+    if (self) {
         self.stationary = NO;
         self.mass_min = 0;
         self.mass_max = 10;
@@ -33,40 +32,30 @@
     return self;
 }
 
--(id)initWithImageNamed:(NSString*)name AndMass:(float)mass
+- (id)initWithImageNamed:(NSString *)name AndMass:(float)mass
 {
     self = [self initWithImageNamed:name];
-    if(self)
-    {
+    if (self) {
         [self setupPhysicsBodyWithMass:mass];
     }
     return self;
 }
 
--(double)constrainMass:(double)mass
-{
-    return [self constrainValue:mass Between:self.mass_min And:self.mass_max];
-}
+- (double)constrainMass:(double)mass { return [self constrainValue:mass Between:self.mass_min And:self.mass_max]; }
 
--(double)constrainValue:(double)value Between:(double)min And:(double)max
+- (double)constrainValue:(double)value Between:(double)min And:(double)max
 {
-    if(value < min)
-    {
+    if (value < min) {
         value = min;
-    }
-    else if (value > max)
-    {
+    } else if (value > max) {
         value = max;
     }
     return value;
 }
 
--(void)updateSize:(CGSize*)size
-{
-    self.size = *(size);
-}
+- (void)updateSize:(CGSize *)size { self.size = *(size); }
 
--(void)setupPhysicsBodyWithMass:(float)mass
+- (void)setupPhysicsBodyWithMass:(float)mass
 {
     self.physicsBody = [SKPhysicsBody bodyWithTexture:self.texture size:self.size];
     self.physicsBody.dynamic = YES;
@@ -77,8 +66,5 @@
     self.physicsBody.restitution = 0.9;
 }
 
--(void)destroy
-{
-    [self removeFromParent];
-}
+- (void)destroy { [self removeFromParent]; }
 @end

@@ -18,14 +18,14 @@
 @property float mass_min;
 @property float mass_max;
 
--(id)init;
--(id)initWithImageNamed:(NSString *)name;
--(id)initWithImageNamed:(NSString*)name AndMass:(float)mass;
--(void)updateSize:(CGSize*)size;
--(void)setupPhysicsBodyWithMass:(float)mass;
--(double)constrainMass:(double)mass;
--(double)constrainValue:(double)value Between:(double)min And:(double)max;
--(void)destroy;
+- (id)init;
+- (id)initWithImageNamed:(NSString *)name;
+- (id)initWithImageNamed:(NSString *)name AndMass:(float)mass;
+- (void)updateSize:(CGSize *)size;
+- (void)setupPhysicsBodyWithMass:(float)mass;
+- (double)constrainMass:(double)mass;
+- (double)constrainValue:(double)value Between:(double)min And:(double)max;
+- (void)destroy;
 @end
 
 #endif

@@ -18,7 +18,6 @@ static const uint32_t PORTAL_CATEGORY = 0x00001000;
 static const uint32_t EXIT_CATEGORY = 0x00010000;
 static const uint32_t ROCK_CATEGORY = 0x00100000;
 
-
 static const uint32_t WORLD_CONTACTS = SHIP_CATEGORY;
 static const uint32_t SHIP_CONTACTS = SHIP_CATEGORY | EXIT_CATEGORY | WORLD_CATEGORY | ROCK_CATEGORY;
 static const uint32_t EXIT_CONTACTS = SHIP_CATEGORY;

@@ -10,20 +10,21 @@
 #import "Ship.h"
 #import "Collisions.h"
 
-@interface Ship()
+@interface Ship ()
 
 @end
 
 @implementation Ship : CelestialBody
 
--(id)initWithImageNamed:(NSString *)name
+- (id)initWithImageNamed:(NSString *)name
 {
     self = [super initWithImageNamed:name];
-    if(self)
-    {
+    if (self) {
         self.stationary = NO;
         self.size = CGSizeMake(self.texture.size.width, self.texture.size.height);
-        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.texture.size.width/3, self.texture.size.height/4)center:CGPointMake(self.texture.size.width*1/3, 0)];
+        self.physicsBody =
+            [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.texture.size.width / 3, self.texture.size.height / 4)
+                                            center:CGPointMake(self.texture.size.width * 1 / 3, 0)];
         self.physicsBody.dynamic = YES;
         self.physicsBody.affectedByGravity = NO;
         self.physicsBody.allowsRotation = YES;

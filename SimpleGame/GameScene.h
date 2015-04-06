@@ -13,6 +13,6 @@ static double MAX_FORCE = 100000;
 
 @interface GameScene : SKScene <SKPhysicsContactDelegate>
 
--(void)addShip:(Ship*)ship;
+- (void)addShip:(Ship *)ship;
 
 @end

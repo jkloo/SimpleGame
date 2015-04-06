@@ -12,8 +12,8 @@
 #import "Ship.h"
 
 @interface BlueShip : Ship
--(id)init;
--(void)destroy;
+- (id)init;
+- (void)destroy;
 @end
 
 #endif

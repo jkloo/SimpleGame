@@ -21,21 +21,20 @@ static unsigned int BLACK_HOLE_MASS_MIN = 50;
 static unsigned int BLACK_HOLE_MASS_MAX = 350;
 static unsigned int BLACK_HOLE_MASS_GROWTH_RATE = 300;
 
-
 @interface BlackHole : CelestialBody
 
 @property double radius;
 @property double radius_min;
 @property double radius_max;
-@property UITouch * touch;
+@property UITouch *touch;
 @property NSTimeInterval beginning;
 
--(id)init;
--(id)initWithMass:(double)mass AndRadius:(double)radius;
--(void)updateSize:(double)radius;
--(void)setupPhysicsBodyWithMass:(double)mass AndRadius:(double)radius;
--(double)constrainRadius:(double)radius;
--(void)finalize;
+- (id)init;
+- (id)initWithMass:(double)mass AndRadius:(double)radius;
+- (void)updateSize:(double)radius;
+- (void)setupPhysicsBodyWithMass:(double)mass AndRadius:(double)radius;
+- (double)constrainRadius:(double)radius;
+- (void)finalize;
 
 @end
 

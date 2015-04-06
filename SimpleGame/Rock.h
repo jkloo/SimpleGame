@@ -12,7 +12,7 @@
 
 @property CGFloat diameter;
 
--(id)init;
--(void)destroy;
+- (id)init;
+- (void)destroy;
 
 @end
